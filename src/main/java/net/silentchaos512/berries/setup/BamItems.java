@@ -1,10 +1,13 @@
 package net.silentchaos512.berries.setup;
 
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.lib.registry.ItemRegistryObject;
 
@@ -53,5 +56,13 @@ public class BamItems {
 
     private static Item.Properties props() {
         return new Item.Properties();
+    }
+
+    public static void onBuildContentsOfCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            for (RegistryObject<Item> item : REGISTER.getEntries()) {
+                event.accept(item.get());
+            }
+        }
     }
 }

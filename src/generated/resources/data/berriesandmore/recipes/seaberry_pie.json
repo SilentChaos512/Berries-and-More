@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "berriesandmore:seaberries"
+    },
+    "e": {
+      "tag": "forge:eggs"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    },
+    "w": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "esw",
+    "bbb"
+  ],
+  "result": {
+    "item": "berriesandmore:seaberry_pie"
+  }
+}

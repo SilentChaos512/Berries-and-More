@@ -29,6 +29,7 @@ public final class BerriesMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BamBlocks.REGISTER.register(modEventBus);
         BamItems.REGISTER.register(modEventBus);
+        modEventBus.addListener(BamItems::onBuildContentsOfCreativeTabs);
     }
 
     public static ResourceLocation getId(String path) {

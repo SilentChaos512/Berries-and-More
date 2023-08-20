@@ -23,30 +23,34 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModelFile itemGenerated = getExistingFile(new ResourceLocation("item/generated"));
 
         // Berries
-        builder(BamItems.ACEROLA_BERRIES);
-        builder(BamItems.SEABERRIES);
-        builder(BamItems.SNOWBERRIES);
+        simple(BamItems.ACEROLA_BERRIES);
+        simple(BamItems.SEABERRIES);
+        simple(BamItems.SNOWBERRIES);
 
         // Juice
-        builder(BamItems.ACEROLA_BERRY_JUICE);
-        builder(BamItems.SEABERRY_JUICE);
-        builder(BamItems.SNOWBERRY_JUICE);
-        builder(BamItems.SWEET_BERRY_JUICE);
+        simple(BamItems.ACEROLA_BERRY_JUICE);
+        simple(BamItems.SEABERRY_JUICE);
+        simple(BamItems.SNOWBERRY_JUICE);
+        simple(BamItems.SWEET_BERRY_JUICE);
         // Pies
-        builder(BamItems.ACEROLA_BERRY_PIE);
-        builder(BamItems.SEABERRY_PIE);
-        builder(BamItems.SNOWBERRY_PIE);
-        builder(BamItems.SWEET_BERRY_PIE);
+        simple(BamItems.ACEROLA_BERRY_PIE);
+        simple(BamItems.SEABERRY_PIE);
+        simple(BamItems.SNOWBERRY_PIE);
+        simple(BamItems.SWEET_BERRY_PIE);
         // Tea
-        builder(BamItems.ACEROLA_BERRY_TEA);
-        builder(BamItems.SEABERRY_TEA);
-        builder(BamItems.SNOWBERRY_TEA);
-        builder(BamItems.SWEET_BERRY_TEA);
+        simple(BamItems.ACEROLA_BERRY_TEA);
+        simple(BamItems.SEABERRY_TEA);
+        simple(BamItems.SNOWBERRY_TEA);
+        simple(BamItems.SWEET_BERRY_TEA);
         // Wine
-        builder(BamItems.ACEROLA_BERRY_WINE);
-        builder(BamItems.SEABERRY_WINE);
-        builder(BamItems.SNOWBERRY_WINE);
-        builder(BamItems.SWEET_BERRY_WINE);
+        simple(BamItems.ACEROLA_BERRY_WINE);
+        simple(BamItems.SEABERRY_WINE);
+        simple(BamItems.SNOWBERRY_WINE);
+        simple(BamItems.SWEET_BERRY_WINE);
+    }
+
+    private ItemModelBuilder simple(ItemLike item) {
+        return builder(item, getExistingFile(new ResourceLocation("item/generated")));
     }
 
     private ItemModelBuilder builder(ItemLike item) {

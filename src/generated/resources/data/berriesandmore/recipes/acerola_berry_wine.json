@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "berriesandmore:acerola_berries"
+    },
+    {
+      "item": "berriesandmore:acerola_berries"
+    },
+    {
+      "item": "minecraft:red_mushroom"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "berriesandmore:acerola_berry_wine"
+  }
+}
