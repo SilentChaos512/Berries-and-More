@@ -6,6 +6,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -17,6 +20,7 @@ import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class BerryBushBlock extends SweetBerryBushBlock {
     private final ItemLike berries;
@@ -38,7 +42,16 @@ public class BerryBushBlock extends SweetBerryBushBlock {
         if (this.nativeSoil != null && state.is(this.nativeSoil)) {
             return true;
         }
+        // Any bush can grow on dirt/farmland
         return super.mayPlaceOn(state, level, pos);
+    }
+
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
+            entity.makeStuckInBlock(state, new Vec3((double)0.8F, 0.75D, (double)0.8F));
+            // No thorns
+        }
     }
 
     @Override
