@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_hill",
+  "features": "berriesandmore:seaberry_bushes",
+  "step": "vegetal_decoration"
+}

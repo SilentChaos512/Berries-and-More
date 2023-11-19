@@ -17,5 +17,7 @@ public final class DataGenerators {
         gen.addProvider(true, new ModItemModelProvider(event));
 
         gen.addProvider(true, new ModRecipeProvider(event.getGenerator()));
+
+        gen.addProvider(true, new WorldGenGenerator(event));
     }
 }

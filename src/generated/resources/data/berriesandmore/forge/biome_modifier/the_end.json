@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "berriesandmore:void_berry_bushes",
+  "step": "vegetal_decoration"
+}

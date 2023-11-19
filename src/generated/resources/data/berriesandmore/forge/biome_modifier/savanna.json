@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": "berriesandmore:acerola_berry_bushes",
+  "step": "vegetal_decoration"
+}

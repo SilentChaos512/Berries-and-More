@@ -22,6 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         berryBush(BamBlocks.ACEROLA_BERRY_BUSH.get());
         berryBush(BamBlocks.SEABERRY_BUSH.get());
         berryBush(BamBlocks.SNOWBERRY_BUSH.get());
+        berryBush(BamBlocks.VOID_BERRY_BUSH.get());
+        berryBush(BamBlocks.SCORCH_BERRY_BUSH.get());
     }
 
     private void berryBush(Block block) {

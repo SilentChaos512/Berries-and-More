@@ -26,26 +26,36 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.ACEROLA_BERRIES);
         simple(BamItems.SEABERRIES);
         simple(BamItems.SNOWBERRIES);
+        simple(BamItems.VOID_BERRIES);
+        simple(BamItems.SCORCH_BERRIES);
 
         // Juice
         simple(BamItems.ACEROLA_BERRY_JUICE);
         simple(BamItems.SEABERRY_JUICE);
         simple(BamItems.SNOWBERRY_JUICE);
+        simple(BamItems.VOID_BERRY_JUICE);
+        simple(BamItems.SCORCH_BERRY_JUICE);
         simple(BamItems.SWEET_BERRY_JUICE);
         // Pies
         simple(BamItems.ACEROLA_BERRY_PIE);
         simple(BamItems.SEABERRY_PIE);
         simple(BamItems.SNOWBERRY_PIE);
+        simple(BamItems.VOID_BERRY_PIE);
+        simple(BamItems.SCORCH_BERRY_PIE);
         simple(BamItems.SWEET_BERRY_PIE);
         // Tea
         simple(BamItems.ACEROLA_BERRY_TEA);
         simple(BamItems.SEABERRY_TEA);
         simple(BamItems.SNOWBERRY_TEA);
+        simple(BamItems.VOID_BERRY_TEA);
+        simple(BamItems.SCORCH_BERRY_TEA);
         simple(BamItems.SWEET_BERRY_TEA);
         // Wine
         simple(BamItems.ACEROLA_BERRY_WINE);
         simple(BamItems.SEABERRY_WINE);
         simple(BamItems.SNOWBERRY_WINE);
+        simple(BamItems.VOID_BERRY_WINE);
+        simple(BamItems.SCORCH_BERRY_WINE);
         simple(BamItems.SWEET_BERRY_WINE);
     }
 

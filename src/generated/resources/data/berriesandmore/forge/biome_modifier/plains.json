@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#berriesandmore:is_plains",
+  "features": "berriesandmore:snowberry_bushes",
+  "step": "vegetal_decoration"
+}
