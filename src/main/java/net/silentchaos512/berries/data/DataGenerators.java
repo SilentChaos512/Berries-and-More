@@ -15,6 +15,7 @@ public final class DataGenerators {
 
         gen.addProvider(true, new ModBlockStateProvider(event));
         gen.addProvider(true, new ModItemModelProvider(event));
+        gen.addProvider(true, new ModLanguageProvider(event.getGenerator()));
 
         gen.addProvider(true, new ModRecipeProvider(event.getGenerator()));
 
