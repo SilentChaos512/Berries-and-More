@@ -32,14 +32,14 @@ public class BamItems {
 
     // Foods
     // Juice
-    public static final ItemRegistryObject<Item> ACEROLA_BERRY_JUICE = registerDrink("acerola_berry_juice", BamFoods.SWEET_BERRY_JUICE);
+    public static final ItemRegistryObject<Item> ACEROLA_BERRY_JUICE = registerDrink("acerola_berry_juice", BamFoods.ACEROLA_BERRY_JUICE);
     public static final ItemRegistryObject<Item> SEABERRY_JUICE = registerDrink("seaberry_juice", BamFoods.SEABERRY_JUICE);
     public static final ItemRegistryObject<Item> SNOWBERRY_JUICE = registerDrink("snowberry_juice", BamFoods.SNOWBERRY_JUICE);
     public static final ItemRegistryObject<Item> VOID_BERRY_JUICE = registerDrink("void_berry_juice", BamFoods.VOID_BERRY_JUICE);
     public static final ItemRegistryObject<Item> SCORCH_BERRY_JUICE = registerDrink("scorch_berry_juice", BamFoods.SCORCH_BERRY_JUICE);
     public static final ItemRegistryObject<Item> SWEET_BERRY_JUICE = registerDrink("sweet_berry_juice", BamFoods.SWEET_BERRY_JUICE);
     // Pie
-    public static final ItemRegistryObject<Item> ACEROLA_BERRY_PIE = registerFood("acerola_berry_pie", BamFoods.SWEET_BERRY_PIE);
+    public static final ItemRegistryObject<Item> ACEROLA_BERRY_PIE = registerFood("acerola_berry_pie", BamFoods.ACEROLA_BERRY_PIE);
     public static final ItemRegistryObject<Item> SEABERRY_PIE = registerFood("seaberry_pie", BamFoods.SEABERRY_PIE);
     public static final ItemRegistryObject<Item> SNOWBERRY_PIE = registerFood("snowberry_pie", BamFoods.SNOWBERRY_PIE);
     public static final ItemRegistryObject<Item> VOID_BERRY_PIE = registerFood("void_berry_pie", BamFoods.VOID_BERRY_PIE);
