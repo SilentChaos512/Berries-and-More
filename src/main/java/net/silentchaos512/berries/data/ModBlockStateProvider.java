@@ -1,16 +1,12 @@
 package net.silentchaos512.berries.data;
 
-import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.setup.BamBlocks;
-import net.silentchaos512.lib.block.IBlockProvider;
-import net.silentchaos512.lib.util.NameUtils;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(GatherDataEvent event) {
@@ -19,16 +15,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        berryBush(BamBlocks.ACEROLA_BERRY_BUSH.get());
-        berryBush(BamBlocks.SEABERRY_BUSH.get());
-        berryBush(BamBlocks.SNOWBERRY_BUSH.get());
-        berryBush(BamBlocks.VOID_BERRY_BUSH.get());
-        berryBush(BamBlocks.SCORCH_BERRY_BUSH.get());
+        berryBush(BamBlocks.ACEROLA_BERRY_BUSH);
+        berryBush(BamBlocks.SEABERRY_BUSH);
+        berryBush(BamBlocks.SNOWBERRY_BUSH);
+        berryBush(BamBlocks.VOID_BERRY_BUSH);
+        berryBush(BamBlocks.SCORCH_BERRY_BUSH);
     }
 
-    private void berryBush(Block block) {
-        String blockName = NameUtils.fromBlock(block).getPath();
-        getVariantBuilder(block).forAllStates(state -> {
+    private void berryBush(DeferredBlock<?> block) {
+        String blockName = block.getId().getPath();
+        getVariantBuilder(block.get()).forAllStates(state -> {
             int age = state.getValue(SweetBerryBushBlock.AGE);
             String name = blockName + "_stage" + age;
             return ConfiguredModel.builder()

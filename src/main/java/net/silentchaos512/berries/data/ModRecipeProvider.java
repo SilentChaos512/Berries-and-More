@@ -1,24 +1,19 @@
 package net.silentchaos512.berries.data;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.Tags;
-import net.silentchaos512.berries.BerriesMod;
+import net.neoforged.neoforge.common.Tags;
 import net.silentchaos512.berries.setup.BamItems;
-import net.silentchaos512.lib.data.recipe.LibRecipeProvider;
 
-import java.util.function.Consumer;
-
-public class ModRecipeProvider extends LibRecipeProvider {
+public class ModRecipeProvider extends RecipeProvider {
     public ModRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn, BerriesMod.MOD_ID);
+        super(generatorIn.getPackOutput());
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
         juiceRecipe(consumer, BamItems.ACEROLA_BERRY_JUICE, BamItems.ACEROLA_BERRIES);
         juiceRecipe(consumer, BamItems.SEABERRY_JUICE, BamItems.SEABERRIES);
         juiceRecipe(consumer, BamItems.SNOWBERRY_JUICE, BamItems.SNOWBERRIES);
@@ -48,8 +43,8 @@ public class ModRecipeProvider extends LibRecipeProvider {
         wineRecipe(consumer, BamItems.SWEET_BERRY_WINE, Items.SWEET_BERRIES);
     }
 
-    private void juiceRecipe(Consumer<FinishedRecipe> consumer, ItemLike juice, ItemLike berry) {
-        shapelessBuilder(RecipeCategory.FOOD, juice)
+    private void juiceRecipe(RecipeOutput consumer, ItemLike juice, ItemLike berry) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, juice)
                 .requires(berry)
                 .requires(Items.SUGAR)
                 .requires(Items.WATER_BUCKET)
@@ -57,8 +52,8 @@ public class ModRecipeProvider extends LibRecipeProvider {
                 .save(consumer);
     }
 
-    private void pieRecipe(Consumer<FinishedRecipe> consumer, ItemLike pie, ItemLike berry) {
-        shapedBuilder(RecipeCategory.FOOD, pie)
+    private void pieRecipe(RecipeOutput consumer, ItemLike pie, ItemLike berry) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pie)
                 .pattern("esw")
                 .pattern("bbb")
                 .define('e', Tags.Items.EGGS)
@@ -69,8 +64,8 @@ public class ModRecipeProvider extends LibRecipeProvider {
                 .save(consumer);
     }
 
-    private void teaRecipe(Consumer<FinishedRecipe> consumer, ItemLike tea, ItemLike berry) {
-        shapelessBuilder(RecipeCategory.FOOD, tea)
+    private void teaRecipe(RecipeOutput consumer, ItemLike tea, ItemLike berry) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, tea)
                 .requires(berry)
                 .requires(berry)
                 .requires(Items.MILK_BUCKET)
@@ -78,8 +73,8 @@ public class ModRecipeProvider extends LibRecipeProvider {
                 .save(consumer);
     }
 
-    private void wineRecipe(Consumer<FinishedRecipe> consumer, ItemLike wine, ItemLike berry) {
-        shapelessBuilder(RecipeCategory.FOOD, wine)
+    private void wineRecipe(RecipeOutput consumer, ItemLike wine, ItemLike berry) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, wine)
                 .requires(berry)
                 .requires(berry)
                 .requires(Items.RED_MUSHROOM)

@@ -1,36 +1,32 @@
 modLoader="javafml"
-loaderVersion="[46,)"
-license="MIT"
-issueTrackerURL="https://github.com/SilentChaos512/Berries-and-More/issues"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/berries-and-more"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="${issue_tracker_url}"
+displayURL="${display_url}"
 logoFile="logo.png"
-#credits="Thanks for this example mod goes to Java"
-authors="SilentChaos512, giok3r"
 
 [[mods]]
-    modId="berriesandmore"
-    version="${file.jarVersion}"
-    displayName="Berries and More"
-    updateJSONURL="https://raw.githubusercontent.com/SilentChaos512/Berries-and-More/1.20.x/update.json"
-    description='''
-    More berries and food items
-    '''
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+description='''${mod_description}'''
 
-[[dependencies.berriesandmore]]
-    modId="forge"
-    mandatory=true
-    versionRange="[46,)"
-    ordering="AFTER"
-    side="BOTH"
-[[dependencies.berriesandmore]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.20,1.21)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.berriesandmore]]
-    modId="silentlib"
-    mandatory=true
-    versionRange="[8,)"
-    ordering="NONE"
-    side="BOTH"
+[[dependencies.${mod_id}]]
+modId="neoforge"
+type="required"
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+[[dependencies.${mod_id}]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+#[[dependencies.${mod_id}]]
+#modId="silentlib"
+#mandatory=true
+#versionRange="${silentlib_version_range}"
+#ordering="NONE"
+#side="BOTH"

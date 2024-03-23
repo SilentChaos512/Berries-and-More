@@ -2,9 +2,8 @@ package net.silentchaos512.berries;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
 import net.silentchaos512.berries.setup.BamBlocks;
 import net.silentchaos512.berries.setup.BamItems;
 import org.apache.logging.log4j.LogManager;
@@ -23,10 +22,9 @@ public final class BerriesMod {
 
     public static BerriesMod INSTANCE;
 
-    public BerriesMod() {
+    public BerriesMod(IEventBus modEventBus) {
         INSTANCE = this;
 
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BamBlocks.REGISTER.register(modEventBus);
         BamItems.REGISTER.register(modEventBus);
         modEventBus.addListener(BamItems::onBuildContentsOfCreativeTabs);

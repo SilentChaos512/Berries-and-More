@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -21,15 +21,15 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConf
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.common.world.ForgeBiomeModifiers;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.common.world.BiomeModifiers;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.block.BerryBushBlock;
 import net.silentchaos512.berries.setup.BamBlocks;
-import net.silentchaos512.lib.registry.BlockRegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -63,44 +63,44 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
                 ctx.register(placedFeatureKey(VOID_BERRY_BUSHES.location()), placedBushes(holderFeature(ctx, VOID_BERRY_BUSHES)));
                 ctx.register(placedFeatureKey(SCORCH_BERRY_BUSHES.location()), placedBushesNether(holderFeature(ctx, SCORCH_BERRY_BUSHES)));
             })
-            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, ctx -> {
+            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ctx -> {
                 ctx.register(biomeModifierKey(BerriesMod.getId("savanna")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_SAVANNA),
                                 HolderSet.direct(holderPlaced(ctx, ACEROLA_BERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("plains")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(TagKey.create(Registries.BIOME, BerriesMod.getId("is_plains"))),
                                 HolderSet.direct(holderPlaced(ctx, SNOWBERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("mountains")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_MOUNTAIN),
                                 HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("hills")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_HILL),
                                 HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("nether")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_NETHER),
                                 HolderSet.direct(holderPlaced(ctx, SCORCH_BERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("the_end")),
-                        new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_END),
                                 HolderSet.direct(holderPlaced(ctx, VOID_BERRY_BUSHES.location())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
@@ -113,9 +113,10 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
     }
 
     @NotNull
-    private static RandomPatchConfiguration berryBushConfig(BlockRegistryObject<BerryBushBlock> berryBush) {
+    private static RandomPatchConfiguration berryBushConfig(DeferredBlock<BerryBushBlock> berryBush) {
+        BlockState state = berryBush.get().defaultBlockState();
         return FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(BlockStateProvider.simple(berryBush.asBlockState().setValue(BerryBushBlock.AGE, Integer.valueOf(3))))
+                new SimpleBlockConfiguration(BlockStateProvider.simple(state.setValue(BerryBushBlock.AGE, 3)))
         );
     }
 
@@ -128,7 +129,7 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
     }
 
     protected static ResourceKey<BiomeModifier> biomeModifierKey(ResourceLocation name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, name);
+        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, name);
     }
 
     public static PlacedFeature placedBushes(Holder<ConfiguredFeature<?, ?>> feature) {

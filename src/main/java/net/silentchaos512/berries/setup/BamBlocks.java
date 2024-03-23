@@ -7,28 +7,27 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.block.BerryBushBlock;
-import net.silentchaos512.lib.registry.BlockRegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 public class BamBlocks {
-    public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, BerriesMod.MOD_ID);
+    public static final DeferredRegister.Blocks REGISTER = DeferredRegister.createBlocks(BerriesMod.MOD_ID);
 
-    public static final BlockRegistryObject<BerryBushBlock> ACEROLA_BERRY_BUSH = registerNoItem("acerola_berry_bush",() ->
+    public static final DeferredBlock<BerryBushBlock> ACEROLA_BERRY_BUSH = registerNoItem("acerola_berry_bush",() ->
             getBerryBush(BamItems.ACEROLA_BERRIES));
-    public static final BlockRegistryObject<BerryBushBlock> SEABERRY_BUSH = registerNoItem("seaberry_bush",() ->
+    public static final DeferredBlock<BerryBushBlock> SEABERRY_BUSH = registerNoItem("seaberry_bush",() ->
             getBerryBush(BamItems.SEABERRIES));
-    public static final BlockRegistryObject<BerryBushBlock> SNOWBERRY_BUSH = registerNoItem("snowberry_bush",() ->
+    public static final DeferredBlock<BerryBushBlock> SNOWBERRY_BUSH = registerNoItem("snowberry_bush",() ->
             getBerryBush(BamItems.SNOWBERRIES));
-    public static final BlockRegistryObject<BerryBushBlock> VOID_BERRY_BUSH = registerNoItem("void_berry_bush",() ->
+    public static final DeferredBlock<BerryBushBlock> VOID_BERRY_BUSH = registerNoItem("void_berry_bush",() ->
             getBerryBush(BamItems.VOID_BERRIES, Tags.Blocks.END_STONES));
-    public static final BlockRegistryObject<BerryBushBlock> SCORCH_BERRY_BUSH = registerNoItem("scorch_berry_bush",() ->
+    public static final DeferredBlock<BerryBushBlock> SCORCH_BERRY_BUSH = registerNoItem("scorch_berry_bush",() ->
             getBerryBush(BamItems.SCORCH_BERRIES, Tags.Blocks.NETHERRACK));
 
     @NotNull
@@ -48,7 +47,7 @@ public class BamBlocks {
         );
     }
 
-    private static <T extends Block> BlockRegistryObject<T> registerNoItem(String name, Supplier<T> block) {
-        return new BlockRegistryObject<>(REGISTER.register(name, block));
+    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Supplier<T> block) {
+        return REGISTER.register(name, block);
     }
 }
