@@ -1,0 +1,10 @@
+{
+  "values": {
+    "#berriesandmore:berries": {
+      "chance": 0.3
+    },
+    "#berriesandmore:pies": {
+      "chance": 1.0
+    }
+  }
+}
