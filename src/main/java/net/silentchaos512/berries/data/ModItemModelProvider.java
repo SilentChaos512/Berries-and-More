@@ -17,8 +17,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        ModelFile itemGenerated = getExistingFile(new ResourceLocation("item/generated"));
-
         // Berries
         simple(BamItems.ACEROLA_BERRIES);
         simple(BamItems.SEABERRIES);
@@ -57,7 +55,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder simple(DeferredItem<?> item) {
-        return builder(item, getExistingFile(new ResourceLocation("item/generated")));
+        return builder(item, getExistingFile(ResourceLocation.withDefaultNamespace("item/generated")));
     }
 
     private ItemModelBuilder builder(DeferredItem<?> item) {

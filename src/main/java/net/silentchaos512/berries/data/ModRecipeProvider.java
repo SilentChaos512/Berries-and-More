@@ -5,42 +5,43 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.silentchaos512.berries.setup.BamItems;
 
 public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(DataGenerator generatorIn) {
-        super(generatorIn.getPackOutput());
+    public ModRecipeProvider(GatherDataEvent event) {
+        super(event.getGenerator().getPackOutput(), event.getLookupProvider());
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput consumer) {
-        juiceRecipe(consumer, BamItems.ACEROLA_BERRY_JUICE, BamItems.ACEROLA_BERRIES);
-        juiceRecipe(consumer, BamItems.SEABERRY_JUICE, BamItems.SEABERRIES);
-        juiceRecipe(consumer, BamItems.SNOWBERRY_JUICE, BamItems.SNOWBERRIES);
-        juiceRecipe(consumer, BamItems.VOID_BERRY_JUICE, BamItems.VOID_BERRIES);
-        juiceRecipe(consumer, BamItems.SCORCH_BERRY_JUICE, BamItems.SCORCH_BERRIES);
-        juiceRecipe(consumer, BamItems.SWEET_BERRY_JUICE, Items.SWEET_BERRIES);
+    protected void buildRecipes(RecipeOutput output) {
+        juiceRecipe(output, BamItems.ACEROLA_BERRY_JUICE, BamItems.ACEROLA_BERRIES);
+        juiceRecipe(output, BamItems.SEABERRY_JUICE, BamItems.SEABERRIES);
+        juiceRecipe(output, BamItems.SNOWBERRY_JUICE, BamItems.SNOWBERRIES);
+        juiceRecipe(output, BamItems.VOID_BERRY_JUICE, BamItems.VOID_BERRIES);
+        juiceRecipe(output, BamItems.SCORCH_BERRY_JUICE, BamItems.SCORCH_BERRIES);
+        juiceRecipe(output, BamItems.SWEET_BERRY_JUICE, Items.SWEET_BERRIES);
 
-        pieRecipe(consumer, BamItems.ACEROLA_BERRY_PIE, BamItems.ACEROLA_BERRIES);
-        pieRecipe(consumer, BamItems.SEABERRY_PIE, BamItems.SEABERRIES);
-        pieRecipe(consumer, BamItems.SNOWBERRY_PIE, BamItems.SNOWBERRIES);
-        pieRecipe(consumer, BamItems.VOID_BERRY_PIE, BamItems.VOID_BERRIES);
-        pieRecipe(consumer, BamItems.SCORCH_BERRY_PIE, BamItems.SCORCH_BERRIES);
-        pieRecipe(consumer, BamItems.SWEET_BERRY_PIE, Items.SWEET_BERRIES);
+        pieRecipe(output, BamItems.ACEROLA_BERRY_PIE, BamItems.ACEROLA_BERRIES);
+        pieRecipe(output, BamItems.SEABERRY_PIE, BamItems.SEABERRIES);
+        pieRecipe(output, BamItems.SNOWBERRY_PIE, BamItems.SNOWBERRIES);
+        pieRecipe(output, BamItems.VOID_BERRY_PIE, BamItems.VOID_BERRIES);
+        pieRecipe(output, BamItems.SCORCH_BERRY_PIE, BamItems.SCORCH_BERRIES);
+        pieRecipe(output, BamItems.SWEET_BERRY_PIE, Items.SWEET_BERRIES);
 
-        teaRecipe(consumer, BamItems.ACEROLA_BERRY_TEA, BamItems.ACEROLA_BERRIES);
-        teaRecipe(consumer, BamItems.SEABERRY_TEA, BamItems.SEABERRIES);
-        teaRecipe(consumer, BamItems.SNOWBERRY_TEA, BamItems.SNOWBERRIES);
-        teaRecipe(consumer, BamItems.VOID_BERRY_TEA, BamItems.VOID_BERRIES);
-        teaRecipe(consumer, BamItems.SCORCH_BERRY_TEA, BamItems.SCORCH_BERRIES);
-        teaRecipe(consumer, BamItems.SWEET_BERRY_TEA, Items.SWEET_BERRIES);
+        teaRecipe(output, BamItems.ACEROLA_BERRY_TEA, BamItems.ACEROLA_BERRIES);
+        teaRecipe(output, BamItems.SEABERRY_TEA, BamItems.SEABERRIES);
+        teaRecipe(output, BamItems.SNOWBERRY_TEA, BamItems.SNOWBERRIES);
+        teaRecipe(output, BamItems.VOID_BERRY_TEA, BamItems.VOID_BERRIES);
+        teaRecipe(output, BamItems.SCORCH_BERRY_TEA, BamItems.SCORCH_BERRIES);
+        teaRecipe(output, BamItems.SWEET_BERRY_TEA, Items.SWEET_BERRIES);
 
-        wineRecipe(consumer, BamItems.ACEROLA_BERRY_WINE, BamItems.ACEROLA_BERRIES);
-        wineRecipe(consumer, BamItems.SEABERRY_WINE, BamItems.SEABERRIES);
-        wineRecipe(consumer, BamItems.SNOWBERRY_WINE, BamItems.SNOWBERRIES);
-        wineRecipe(consumer, BamItems.VOID_BERRY_WINE, BamItems.VOID_BERRIES);
-        wineRecipe(consumer, BamItems.SCORCH_BERRY_WINE, BamItems.SCORCH_BERRIES);
-        wineRecipe(consumer, BamItems.SWEET_BERRY_WINE, Items.SWEET_BERRIES);
+        wineRecipe(output, BamItems.ACEROLA_BERRY_WINE, BamItems.ACEROLA_BERRIES);
+        wineRecipe(output, BamItems.SEABERRY_WINE, BamItems.SEABERRIES);
+        wineRecipe(output, BamItems.SNOWBERRY_WINE, BamItems.SNOWBERRIES);
+        wineRecipe(output, BamItems.VOID_BERRY_WINE, BamItems.VOID_BERRIES);
+        wineRecipe(output, BamItems.SCORCH_BERRY_WINE, BamItems.SCORCH_BERRIES);
+        wineRecipe(output, BamItems.SWEET_BERRY_WINE, Items.SWEET_BERRIES);
     }
 
     private void juiceRecipe(RecipeOutput consumer, ItemLike juice, ItemLike berry) {

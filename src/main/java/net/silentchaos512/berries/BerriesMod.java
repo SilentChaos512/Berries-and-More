@@ -34,6 +34,6 @@ public final class BerriesMod {
         if (path.contains(":")) {
             throw new IllegalArgumentException("path contains namespace");
         }
-        return new ResourceLocation(MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

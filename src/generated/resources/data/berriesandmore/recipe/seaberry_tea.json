@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "berriesandmore:seaberries"
+    },
+    {
+      "item": "berriesandmore:seaberries"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "berriesandmore:seaberry_tea"
+  }
+}

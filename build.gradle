@@ -3,9 +3,18 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.97'
+    id 'net.neoforged.gradle.userdev' version '7.0.145'
     id "com.matthewprenger.cursegradle" version "1.4.0"
     id "com.modrinth.minotaur" version "2.+"
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    // Define wrapper values here so as to not have to always do so when updating gradlew.properties.
+    // Switching this to Wrapper.DistributionType.ALL will download the full gradle sources that comes with
+    // documentation attached on cursor hover of gradle classes and methods. However, this comes with increased
+    // file size for Gradle. If you do switch this to ALL, run the Gradle wrapper task twice afterwards.
+    // (Verify by checking gradle/wrapper/gradle-wrapper.properties to see if distributionUrl now points to `-all`)
+    distributionType = Wrapper.DistributionType.BIN
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
@@ -27,8 +36,8 @@ repositories {
     mavenLocal()
 }
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 runs {
     // applies to all the run configs below
@@ -90,14 +99,6 @@ repositories {
         url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
-        url = uri("https://maven.pkg.github.com/silentchaos512/silentlib")
-        credentials gpr_creds
-    }
-    maven {
-        url = uri("https://maven.pkg.github.com/silentchaos512/silent-utils")
-        credentials gpr_creds
-    }
-    maven {
         // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
@@ -111,10 +112,6 @@ repositories {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-
-//    implementation fg.deobf("net.silentchaos512:silent-lib:${project.sl_version}") {
-//        exclude module: "forge"
-//    }
 
     // JEI
     if (project.hasProperty("jei_version")) {
@@ -132,17 +129,23 @@ dependencies {
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            minecraft_version      : minecraft_version, minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version, neo_version_range: neo_version_range,
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
-            mod_id                 : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors            : mod_authors, mod_description: mod_description,
-            issue_tracker_url      : issue_tracker_url, display_url: display_url,
-            silentlib_version_range: silentlib_version_range
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            issue_tracker_url      : issue_tracker_url,
+            display_url            : display_url
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml']) {
+    filesMatching(['META-INF/neoforge.mods.toml']) {
         expand replaceProperties + [project: project]
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -159,11 +159,11 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
         );
     }
 
-    public static Holder<ConfiguredFeature<?, ?>> holderFeature(BootstapContext<PlacedFeature> ctx, ResourceKey<ConfiguredFeature<?, ?>> location) {
+    public static Holder<ConfiguredFeature<?, ?>> holderFeature(BootstrapContext<PlacedFeature> ctx, ResourceKey<ConfiguredFeature<?, ?>> location) {
         return ctx.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(location);
     }
 
-    public static Holder<PlacedFeature> holderPlaced(BootstapContext<BiomeModifier> ctx, ResourceLocation location) {
+    public static Holder<PlacedFeature> holderPlaced(BootstrapContext<BiomeModifier> ctx, ResourceLocation location) {
         return ctx.lookup(Registries.PLACED_FEATURE).getOrThrow(placedFeatureKey(location));
     }
 }

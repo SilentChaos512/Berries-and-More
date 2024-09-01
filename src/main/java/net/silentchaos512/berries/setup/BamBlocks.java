@@ -28,7 +28,7 @@ public class BamBlocks {
     public static final DeferredBlock<BerryBushBlock> VOID_BERRY_BUSH = registerNoItem("void_berry_bush",() ->
             getBerryBush(BamItems.VOID_BERRIES, Tags.Blocks.END_STONES));
     public static final DeferredBlock<BerryBushBlock> SCORCH_BERRY_BUSH = registerNoItem("scorch_berry_bush",() ->
-            getBerryBush(BamItems.SCORCH_BERRIES, Tags.Blocks.NETHERRACK));
+            getBerryBush(BamItems.SCORCH_BERRIES, Tags.Blocks.NETHERRACKS));
 
     @NotNull
     private static BerryBushBlock getBerryBush(ItemLike berries) {
