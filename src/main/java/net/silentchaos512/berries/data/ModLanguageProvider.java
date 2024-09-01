@@ -18,6 +18,8 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(BamBlocks.SEABERRY_BUSH, "Seaberry Bush");
         addBlock(BamBlocks.SNOWBERRY_BUSH, "Snowberry Bush");
         addBlock(BamBlocks.VOID_BERRY_BUSH, "Void Berry Bush");
+        addBlock(BamBlocks.BARLEY, "Barley");
+        addBlock(BamBlocks.BARLEY_BLOCK, "Barley Block");
 
         addItem(BamItems.ACEROLA_BERRIES, "Acerola Berries");
         addItem(BamItems.SCORCH_BERRIES, "Scorch Berries");
@@ -52,5 +54,25 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.SNOWBERRY_WINE, "Snowberry Wine");
         addItem(BamItems.VOID_BERRY_WINE, "Void Berry Wine");
         addItem(BamItems.SWEET_BERRY_WINE, "Sweet Berry Wine");
+
+        addItem(BamItems.BARLEY_SEEDS, "Barley Seeds");
+        add("item.berriesandmore.barley_seeds.desc", "Found by breaking grass in some biomes");
+        addItem(BamItems.BARLEY, "Barley");
+        addItem(BamItems.BARLEY_BREAD, "Barley Bread");
+        addItem(BamItems.TOASTED_BARLEY, "Toasted Barley");
+        addItem(BamItems.ORZO, "Orzo");
+
+        // Tags (because EMI)
+        add("tag.item.berriesandmore.berries", "Berries (B&M)");
+        add("tag.item.berriesandmore.juices", "Juices (B&M)");
+        add("tag.item.berriesandmore.pies", "Pies (B&M)");
+        add("tag.item.berriesandmore.teas", "Teas (B&M)");
+        add("tag.item.berriesandmore.wines", "Wines (B&M)");
+        add("tag.item.c.crops.barley", "Barley");
+        add("tag.item.c.foods.juice", "Juices");
+        add("tag.item.c.foods.pie", "Pies");
+        add("tag.item.c.foods.tea", "Teas");
+        add("tag.item.c.foods.wine", "Wines");
+        add("tag.item.c.seeds.barley", "Barley Seeds");
     }
 }

@@ -1,5 +1,6 @@
 package net.silentchaos512.berries.data;
 
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -20,6 +21,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         berryBush(BamBlocks.SNOWBERRY_BUSH);
         berryBush(BamBlocks.VOID_BERRY_BUSH);
         berryBush(BamBlocks.SCORCH_BERRY_BUSH);
+
+        getVariantBuilder(BamBlocks.BARLEY.get()).forAllStates(state -> {
+            var age = state.getValue(CropBlock.AGE);
+            var name = "barley_stage" + age;
+            return ConfiguredModel.builder()
+                    .modelFile(models().crop(name, modLoc("block/" + name)).renderType("cutout"))
+                    .build();
+        });
+        axisBlock(BamBlocks.BARLEY_BLOCK.get(), modLoc("block/barley_block_side"), modLoc("block/barley_block_top"));
     }
 
     private void berryBush(DeferredBlock<?> block) {

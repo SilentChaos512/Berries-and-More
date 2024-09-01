@@ -1,0 +1,34 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:blocks/short_grass"
+        },
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:blocks/tall_grass"
+        }
+      ]
+    },
+    {
+      "condition": "minecraft:location_check",
+      "predicate": {
+        "biomes": [
+          "minecraft:birch_forest",
+          "minecraft:flower_forest",
+          "minecraft:forest",
+          "minecraft:grove",
+          "minecraft:meadow",
+          "minecraft:plains",
+          "minecraft:windswept_forest",
+          "minecraft:windswept_hills"
+        ]
+      }
+    }
+  ],
+  "table": "berriesandmore:barley_seeds"
+}

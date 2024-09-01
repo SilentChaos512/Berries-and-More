@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "berriesandmore:barley_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "berriesandmore:barley"
+  }
+}

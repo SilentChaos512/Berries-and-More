@@ -4,10 +4,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 
-public class BerryFoodItem extends Item {
+public class BamFoodItem extends Item {
     private final UseAnim useAnim;
 
-    public BerryFoodItem(UseAnim useAnim, Properties properties) {
+    public BamFoodItem(UseAnim useAnim, Properties properties) {
         super(properties);
         this.useAnim = useAnim;
     }

@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.21-1.1.0]
+- Updated to Minecraft 1.21 (Neoforge)
+### Added
+- Barley, barley seeds, barley blocks, barley bread, and orzo
+  - Barley seeds will drop from tall or short grass in certain biomes, including plains and forests.
+- Many tags for items
+
 ## [1.20.4-1.0.2]
 ### Changed
 - Berries and pies can now be composted

@@ -1,17 +1,21 @@
 package net.silentchaos512.berries.setup;
 
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.ItemLore;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.silentchaos512.berries.BerriesMod;
-import net.silentchaos512.berries.item.BerryFoodItem;
+import net.silentchaos512.berries.item.BamFoodItem;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BamItems {
@@ -19,15 +23,34 @@ public class BamItems {
 
     // Berries
     public static final DeferredItem<ItemNameBlockItem> ACEROLA_BERRIES = register("acerola_berries", () ->
-            new ItemNameBlockItem(BamBlocks.ACEROLA_BERRY_BUSH.get(), props().food(BamFoods.ACEROLA_BERRIES)));
+            new ItemNameBlockItem(BamBlocks.ACEROLA_BERRY_BUSH.get(), props().food(BamFoods.ACEROLA_BERRIES))
+    );
     public static final DeferredItem<ItemNameBlockItem> SEABERRIES = register("seaberries", () ->
-            new ItemNameBlockItem(BamBlocks.SEABERRY_BUSH.get(), props().food(BamFoods.SEABERRIES)));
+            new ItemNameBlockItem(BamBlocks.SEABERRY_BUSH.get(), props().food(BamFoods.SEABERRIES))
+    );
     public static final DeferredItem<ItemNameBlockItem> SNOWBERRIES = register("snowberries", () ->
-            new ItemNameBlockItem(BamBlocks.SNOWBERRY_BUSH.get(), props().food(BamFoods.SNOWBERRIES)));
+            new ItemNameBlockItem(BamBlocks.SNOWBERRY_BUSH.get(), props().food(BamFoods.SNOWBERRIES))
+    );
     public static final DeferredItem<ItemNameBlockItem> VOID_BERRIES = register("void_berries", () ->
-            new ItemNameBlockItem(BamBlocks.VOID_BERRY_BUSH.get(), props().food(BamFoods.VOID_BERRIES)));
+            new ItemNameBlockItem(BamBlocks.VOID_BERRY_BUSH.get(), props().food(BamFoods.VOID_BERRIES))
+    );
     public static final DeferredItem<ItemNameBlockItem> SCORCH_BERRIES = register("scorch_berries", () ->
-            new ItemNameBlockItem(BamBlocks.SCORCH_BERRY_BUSH.get(), props().food(BamFoods.SCORCH_BERRIES)));
+            new ItemNameBlockItem(BamBlocks.SCORCH_BERRY_BUSH.get(), props().food(BamFoods.SCORCH_BERRIES))
+    );
+
+    // Seeds
+    public static final DeferredItem<ItemNameBlockItem> BARLEY_SEEDS = register("barley_seeds", () ->
+            new ItemNameBlockItem(BamBlocks.BARLEY.get(), props()
+                    .component(
+                            DataComponents.LORE,
+                            new ItemLore(
+                                    List.of(
+                                            Component.translatable("item.berriesandmore.barley_seeds.desc")
+                                    )
+                            )
+                    )
+            )
+    );
 
     // Foods
     // Juice
@@ -58,13 +81,18 @@ public class BamItems {
     public static final DeferredItem<Item> VOID_BERRY_WINE = registerDrink("void_berry_wine", BamFoods.VOID_BERRY_WINE);
     public static final DeferredItem<Item> SCORCH_BERRY_WINE = registerDrink("scorch_berry_wine", BamFoods.SCORCH_BERRY_WINE);
     public static final DeferredItem<Item> SWEET_BERRY_WINE = registerFood("sweet_berry_wine", BamFoods.SWEET_BERRY_WINE);
+    // Others
+    public static final DeferredItem<Item> BARLEY = register("barley", () -> new Item(props()));
+    public static final DeferredItem<Item> BARLEY_BREAD = registerFood("barley_bread", BamFoods.BARLEY_BREAD);
+    public static final DeferredItem<Item> TOASTED_BARLEY = register("toasted_barley", () -> new Item(props()));
+    public static final DeferredItem<Item> ORZO = registerDrink("orzo", BamFoods.ORZO);
 
     private static DeferredItem<Item> registerFood(String name, FoodProperties foodProperties) {
-        return register(name, () -> new BerryFoodItem(UseAnim.EAT, props().food(foodProperties)));
+        return register(name, () -> new BamFoodItem(UseAnim.EAT, props().food(foodProperties)));
     }
 
     private static DeferredItem<Item> registerDrink(String name, FoodProperties foodProperties) {
-        return register(name, () -> new BerryFoodItem(UseAnim.DRINK, props().food(foodProperties)));
+        return register(name, () -> new BamFoodItem(UseAnim.DRINK, props().food(foodProperties)));
     }
 
     protected static <T extends Item> DeferredItem<T> register(String name, Supplier<T> item) {

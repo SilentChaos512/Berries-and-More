@@ -21,16 +21,18 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
+
 public class BerryBushBlock extends SweetBerryBushBlock {
     private final ItemLike berries;
-    private TagKey<Block> nativeSoil = null;
+    @Nullable private TagKey<Block> nativeSoil = null;
 
     public BerryBushBlock(ItemLike berries, Properties properties) {
         super(properties);
         this.berries = berries;
     }
 
-    public BerryBushBlock(ItemLike berries, TagKey<Block> nativeSoil, Properties properties) {
+    public BerryBushBlock(ItemLike berries, @Nullable TagKey<Block> nativeSoil, Properties properties) {
         super(properties);
         this.berries = berries;
         this.nativeSoil = nativeSoil;

@@ -69,6 +69,14 @@ public class BamFoods {
             .effect(() -> new MobEffectInstance(MobEffects.INVISIBILITY, 600, 0), 1f)
             .build();
 
+    // Others
+    public static final FoodProperties BARLEY_BREAD = builder(5, 0.8f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 1f)
+            .build();
+    public static final FoodProperties ORZO = builder(5, 0.3f)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200), 1f)
+            .build();
+
     @NotNull
     private static FoodProperties.Builder builder(int nutrition, float saturation) {
         return (new FoodProperties.Builder())

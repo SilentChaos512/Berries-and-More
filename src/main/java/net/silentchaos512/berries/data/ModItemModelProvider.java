@@ -1,14 +1,19 @@
 package net.silentchaos512.berries.data;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.silentchaos512.berries.BerriesMod;
+import net.silentchaos512.berries.setup.BamBlocks;
 import net.silentchaos512.berries.setup.BamItems;
+
+import java.util.Objects;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(GatherDataEvent event) {
@@ -17,12 +22,16 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        blockItemModel(BamBlocks.BARLEY_BLOCK.get());
+
         // Berries
         simple(BamItems.ACEROLA_BERRIES);
         simple(BamItems.SEABERRIES);
         simple(BamItems.SNOWBERRIES);
         simple(BamItems.VOID_BERRIES);
         simple(BamItems.SCORCH_BERRIES);
+        // Seeds
+        simple(BamItems.BARLEY_SEEDS);
 
         // Juice
         simple(BamItems.ACEROLA_BERRY_JUICE);
@@ -52,6 +61,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.VOID_BERRY_WINE);
         simple(BamItems.SCORCH_BERRY_WINE);
         simple(BamItems.SWEET_BERRY_WINE);
+
+        // Others
+        simple(BamItems.BARLEY);
+        simple(BamItems.BARLEY_BREAD);
+        simple(BamItems.TOASTED_BARLEY);
+        simple(BamItems.ORZO);
     }
 
     private ItemModelBuilder simple(DeferredItem<?> item) {
@@ -71,13 +86,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         return getBuilder(item.getId().getPath()).parent(parent).texture("layer0", texture);
     }
 
-    private void blockItemModel(DeferredBlock<?> block) {
-        String name = block.getId().getPath();
-        blockItemModel(block, modLoc("block/" + name));
-    }
-
-    private void blockItemModel(DeferredBlock<?> block, ResourceLocation parent) {
-        String name = block.getId().getPath();
-        withExistingParent(name, parent);
+    private void blockItemModel(Block block) {
+        if (block.asItem() != Items.AIR) {
+            var name = Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block)).getPath();
+            withExistingParent(name, modLoc("block/" + name));
+        }
     }
 }

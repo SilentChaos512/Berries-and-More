@@ -1,11 +1,15 @@
 package net.silentchaos512.berries.data;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.silentchaos512.berries.BerriesMod;
+import net.silentchaos512.berries.setup.BamBlocks;
 import net.silentchaos512.berries.setup.BamItems;
 
 public class ModRecipeProvider extends RecipeProvider {
@@ -42,6 +46,35 @@ public class ModRecipeProvider extends RecipeProvider {
         wineRecipe(output, BamItems.VOID_BERRY_WINE, BamItems.VOID_BERRIES);
         wineRecipe(output, BamItems.SCORCH_BERRY_WINE, BamItems.SCORCH_BERRIES);
         wineRecipe(output, BamItems.SWEET_BERRY_WINE, Items.SWEET_BERRIES);
+
+        // Barley Foods
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamItems.BARLEY_BREAD)
+                .pattern("###")
+                .define('#', BamItems.BARLEY)
+                .unlockedBy("has_item", has(BamItems.BARLEY))
+                .save(output);
+
+        cookingRecipes(output, BamItems.TOASTED_BARLEY, BamItems.BARLEY);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.ORZO)
+                .requires(BamItems.TOASTED_BARLEY)
+                .requires(Items.SUGAR)
+                .requires(Items.MILK_BUCKET)
+                .unlockedBy("has_item", has(BamItems.TOASTED_BARLEY))
+                .save(output);
+
+        // Barley Blocks
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamBlocks.BARLEY_BLOCK)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', BamItems.BARLEY)
+                .unlockedBy("has_item", has(BamItems.BARLEY))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.BARLEY, 9)
+                .requires(BamBlocks.BARLEY_BLOCK)
+                .unlockedBy("has_item", has(BamBlocks.BARLEY_BLOCK))
+                .save(output);
     }
 
     private void juiceRecipe(RecipeOutput consumer, ItemLike juice, ItemLike berry) {
@@ -82,5 +115,18 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.WATER_BUCKET)
                 .unlockedBy("has_item", has(berry))
                 .save(consumer);
+    }
+
+    private void cookingRecipes(RecipeOutput recipeOutput, ItemLike result, ItemLike input) {
+        var name = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 600)
+                .unlockedBy("has_item", has(input))
+                .save(recipeOutput, BerriesMod.getId(name + "_campfire_cooking"));
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 100)
+                .unlockedBy("has_item", has(input))
+                .save(recipeOutput, BerriesMod.getId(name + "_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 200)
+                .unlockedBy("has_item", has(input))
+                .save(recipeOutput, BerriesMod.getId(name));
     }
 }
