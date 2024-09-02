@@ -1,7 +1,7 @@
 {
   "block.berriesandmore.acerola_berry_bush": "Acerola Berry Bush",
   "block.berriesandmore.barley": "Barley",
-  "block.berriesandmore.barley_block": "Barley Block",
+  "block.berriesandmore.barley_block": "Barley Straw Block",
   "block.berriesandmore.scorch_berry_bush": "Scorch Berry Bush",
   "block.berriesandmore.seaberry_bush": "Seaberry Bush",
   "block.berriesandmore.snowberry_bush": "Snowberry Bush",
@@ -41,6 +41,7 @@
   "item.berriesandmore.void_berry_pie": "Void Berry Pie",
   "item.berriesandmore.void_berry_tea": "Void Berry Tea",
   "item.berriesandmore.void_berry_wine": "Void Berry Wine",
+  "tag.block.c.storage_blocks.barley": "Barley Blocks",
   "tag.item.berriesandmore.berries": "Berries (B&M)",
   "tag.item.berriesandmore.juices": "Juices (B&M)",
   "tag.item.berriesandmore.pies": "Pies (B&M)",
@@ -51,5 +52,6 @@
   "tag.item.c.foods.pie": "Pies",
   "tag.item.c.foods.tea": "Teas",
   "tag.item.c.foods.wine": "Wines",
-  "tag.item.c.seeds.barley": "Barley Seeds"
+  "tag.item.c.seeds.barley": "Barley Seeds",
+  "tag.item.c.storage_blocks.barley": "Barley Blocks"
 }

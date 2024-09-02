@@ -26,5 +26,7 @@ public final class DataGenerators {
         gen.addProvider(true, new ModRecipeProvider(event));
 
         gen.addProvider(true, new WorldGenGenerator(event));
+
+        gen.addProvider(true, new ModDataMapsProvider(event));
     }
 }

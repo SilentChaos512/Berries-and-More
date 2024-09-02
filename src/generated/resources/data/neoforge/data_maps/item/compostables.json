@@ -1,0 +1,26 @@
+{
+  "values": {
+    "#berriesandmore:berries": {
+      "chance": 0.3
+    },
+    "#berriesandmore:pies": {
+      "chance": 1.0
+    },
+    "#c:crops/barley": {
+      "chance": 0.65
+    },
+    "#c:seeds/barley": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "#c:storage_blocks/barley": {
+      "chance": 0.85
+    },
+    "berriesandmore:barley_bread": {
+      "chance": 0.85
+    },
+    "berriesandmore:toasted_barley": {
+      "chance": 0.5
+    }
+  }
+}

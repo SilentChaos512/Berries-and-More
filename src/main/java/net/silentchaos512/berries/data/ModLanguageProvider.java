@@ -19,7 +19,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(BamBlocks.SNOWBERRY_BUSH, "Snowberry Bush");
         addBlock(BamBlocks.VOID_BERRY_BUSH, "Void Berry Bush");
         addBlock(BamBlocks.BARLEY, "Barley");
-        addBlock(BamBlocks.BARLEY_BLOCK, "Barley Block");
+        addBlock(BamBlocks.BARLEY_BLOCK, "Barley Straw Block");
 
         addItem(BamItems.ACEROLA_BERRIES, "Acerola Berries");
         addItem(BamItems.SCORCH_BERRIES, "Scorch Berries");
@@ -63,6 +63,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.ORZO, "Orzo");
 
         // Tags (because EMI)
+        add("tag.block.c.storage_blocks.barley", "Barley Blocks");
         add("tag.item.berriesandmore.berries", "Berries (B&M)");
         add("tag.item.berriesandmore.juices", "Juices (B&M)");
         add("tag.item.berriesandmore.pies", "Pies (B&M)");
@@ -74,5 +75,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tag.item.c.foods.tea", "Teas");
         add("tag.item.c.foods.wine", "Wines");
         add("tag.item.c.seeds.barley", "Barley Seeds");
+        add("tag.item.c.storage_blocks.barley", "Barley Blocks");
     }
 }

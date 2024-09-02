@@ -18,6 +18,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(BamTags.Items.STORAGE_BLOCKS_BARLEY).add(BamBlocks.BARLEY_BLOCK.asItem());
+
         tag(BamTags.Items.BERRIES).add(
                 BamItems.ACEROLA_BERRIES.get(),
                 BamItems.SEABERRIES.get(),
