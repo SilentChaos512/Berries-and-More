@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.21-1.1.1]
 ### Changed
 - Barley block renamed to "Barley Straw Block" (ID is still `berriesandmore:barley_block`)
+- You can now drink orzo even when not hungry
 ### Fixed
 - All barley blocks and items (except orzo) can now be composted
 

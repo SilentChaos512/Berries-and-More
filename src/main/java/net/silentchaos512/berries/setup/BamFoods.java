@@ -74,6 +74,7 @@ public class BamFoods {
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 1f)
             .build();
     public static final FoodProperties ORZO = builder(5, 0.3f)
+            .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200), 1f)
             .build();
 
