@@ -33,6 +33,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.SNOWBERRY_JUICE, "Snowberry Juice");
         addItem(BamItems.VOID_BERRY_JUICE, "Void Berry Juice");
         addItem(BamItems.SWEET_BERRY_JUICE, "Sweet Berry Juice");
+        addItem(BamItems.GLOW_BERRY_JUICE, "Glow Berry Juice");
 
         addItem(BamItems.ACEROLA_BERRY_PIE, "Acerola Berry Pie");
         addItem(BamItems.SCORCH_BERRY_PIE, "Scorch Berry Pie");
@@ -40,6 +41,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.SNOWBERRY_PIE, "Snowberry Pie");
         addItem(BamItems.VOID_BERRY_PIE, "Void Berry Pie");
         addItem(BamItems.SWEET_BERRY_PIE, "Sweet Berry Pie");
+        addItem(BamItems.GLOW_BERRY_PIE, "Glow Berry Pie");
 
         addItem(BamItems.ACEROLA_BERRY_TEA, "Acerola Berry Tea");
         addItem(BamItems.SCORCH_BERRY_TEA, "Scorch Berry Tea");
@@ -47,6 +49,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.SNOWBERRY_TEA, "Snowberry Tea");
         addItem(BamItems.VOID_BERRY_TEA, "Void Berry Tea");
         addItem(BamItems.SWEET_BERRY_TEA, "Sweet Berry Tea");
+        addItem(BamItems.GLOW_BERRY_TEA, "Glow Berry Tea");
 
         addItem(BamItems.ACEROLA_BERRY_WINE, "Acerola Berry Wine");
         addItem(BamItems.SCORCH_BERRY_WINE, "Scorch Berry Wine");
@@ -54,6 +57,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.SNOWBERRY_WINE, "Snowberry Wine");
         addItem(BamItems.VOID_BERRY_WINE, "Void Berry Wine");
         addItem(BamItems.SWEET_BERRY_WINE, "Sweet Berry Wine");
+        addItem(BamItems.GLOW_BERRY_WINE, "Glow Berry Wine");
 
         addItem(BamItems.BARLEY_SEEDS, "Barley Seeds");
         add("item.berriesandmore.barley_seeds.desc", "Found by breaking grass in some biomes");
@@ -61,6 +65,10 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(BamItems.BARLEY_BREAD, "Barley Bread");
         addItem(BamItems.TOASTED_BARLEY, "Toasted Barley");
         addItem(BamItems.ORZO, "Orzo");
+        addItem(BamItems.TOASTED_COCOA_BEANS, "Toasted Cocoa Beans");
+        addItem(BamItems.CHOCOLATE_BAR, "Chocolate Bar");
+        addItem(BamItems.CHOCOLATE_MILK, "Chocolate Milk");
+        addItem(BamItems.HOT_COCOA, "Hot Cocoa");
 
         // Tags (because EMI)
         add("tag.block.c.storage_blocks.barley", "Barley Blocks");

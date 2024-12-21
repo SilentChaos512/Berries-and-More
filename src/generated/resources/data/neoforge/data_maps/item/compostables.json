@@ -21,6 +21,9 @@
     },
     "berriesandmore:toasted_barley": {
       "chance": 0.5
+    },
+    "berriesandmore:toasted_cocoa_beans": {
+      "chance": 0.5
     }
   }
 }

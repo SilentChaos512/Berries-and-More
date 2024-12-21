@@ -22,6 +22,7 @@ public class ModDataMapsProvider extends DataMapProvider {
         compostables.add(BamItems.BARLEY_BREAD, new Compostable(0.85f, false), false);
         compostables.add(BamItems.TOASTED_BARLEY, new Compostable(0.5f, false), false);
         compostables.add(BamTags.Items.STORAGE_BLOCKS_BARLEY, new Compostable(0.85f, false), false);
+        compostables.add(BamItems.TOASTED_COCOA_BEANS, new Compostable(0.5f, false), false);
         compostables.build();
     }
 }

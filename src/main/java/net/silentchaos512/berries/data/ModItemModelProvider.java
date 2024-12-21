@@ -40,6 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.VOID_BERRY_JUICE);
         simple(BamItems.SCORCH_BERRY_JUICE);
         simple(BamItems.SWEET_BERRY_JUICE);
+        simple(BamItems.GLOW_BERRY_JUICE);
         // Pies
         simple(BamItems.ACEROLA_BERRY_PIE);
         simple(BamItems.SEABERRY_PIE);
@@ -47,6 +48,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.VOID_BERRY_PIE);
         simple(BamItems.SCORCH_BERRY_PIE);
         simple(BamItems.SWEET_BERRY_PIE);
+        simple(BamItems.GLOW_BERRY_PIE);
         // Tea
         simple(BamItems.ACEROLA_BERRY_TEA);
         simple(BamItems.SEABERRY_TEA);
@@ -54,6 +56,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.VOID_BERRY_TEA);
         simple(BamItems.SCORCH_BERRY_TEA);
         simple(BamItems.SWEET_BERRY_TEA);
+        simple(BamItems.GLOW_BERRY_TEA);
         // Wine
         simple(BamItems.ACEROLA_BERRY_WINE);
         simple(BamItems.SEABERRY_WINE);
@@ -61,12 +64,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         simple(BamItems.VOID_BERRY_WINE);
         simple(BamItems.SCORCH_BERRY_WINE);
         simple(BamItems.SWEET_BERRY_WINE);
+        simple(BamItems.GLOW_BERRY_WINE);
 
         // Others
         simple(BamItems.BARLEY);
         simple(BamItems.BARLEY_BREAD);
         simple(BamItems.TOASTED_BARLEY);
         simple(BamItems.ORZO);
+        simple(BamItems.TOASTED_COCOA_BEANS);
+        simple(BamItems.CHOCOLATE_BAR);
+        simple(BamItems.CHOCOLATE_MILK);
+        simple(BamItems.HOT_COCOA);
     }
 
     private ItemModelBuilder simple(DeferredItem<?> item) {

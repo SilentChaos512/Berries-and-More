@@ -60,6 +60,7 @@ public class BamItems {
     public static final DeferredItem<Item> VOID_BERRY_JUICE = registerDrink("void_berry_juice", BamFoods.VOID_BERRY_JUICE);
     public static final DeferredItem<Item> SCORCH_BERRY_JUICE = registerDrink("scorch_berry_juice", BamFoods.SCORCH_BERRY_JUICE);
     public static final DeferredItem<Item> SWEET_BERRY_JUICE = registerDrink("sweet_berry_juice", BamFoods.SWEET_BERRY_JUICE);
+    public static final DeferredItem<Item> GLOW_BERRY_JUICE = registerDrink("glow_berry_juice", BamFoods.GLOW_BERRY_JUICE);
     // Pie
     public static final DeferredItem<Item> ACEROLA_BERRY_PIE = registerFood("acerola_berry_pie", BamFoods.ACEROLA_BERRY_PIE);
     public static final DeferredItem<Item> SEABERRY_PIE = registerFood("seaberry_pie", BamFoods.SEABERRY_PIE);
@@ -67,6 +68,7 @@ public class BamItems {
     public static final DeferredItem<Item> VOID_BERRY_PIE = registerFood("void_berry_pie", BamFoods.VOID_BERRY_PIE);
     public static final DeferredItem<Item> SCORCH_BERRY_PIE = registerFood("scorch_berry_pie", BamFoods.SCORCH_BERRY_PIE);
     public static final DeferredItem<Item> SWEET_BERRY_PIE = registerFood("sweet_berry_pie", BamFoods.SWEET_BERRY_PIE);
+    public static final DeferredItem<Item> GLOW_BERRY_PIE = registerFood("glow_berry_pie", BamFoods.GLOW_BERRY_PIE);
     // Tea
     public static final DeferredItem<Item> ACEROLA_BERRY_TEA = registerDrink("acerola_berry_tea", BamFoods.ACEROLA_BERRY_TEA);
     public static final DeferredItem<Item> SEABERRY_TEA = registerDrink("seaberry_tea", BamFoods.SEABERRY_TEA);
@@ -74,6 +76,7 @@ public class BamItems {
     public static final DeferredItem<Item> VOID_BERRY_TEA = registerDrink("void_berry_tea", BamFoods.VOID_BERRY_TEA);
     public static final DeferredItem<Item> SCORCH_BERRY_TEA = registerDrink("scorch_berry_tea", BamFoods.SCORCH_BERRY_TEA);
     public static final DeferredItem<Item> SWEET_BERRY_TEA = registerDrink("sweet_berry_tea", BamFoods.SWEET_BERRY_TEA);
+    public static final DeferredItem<Item> GLOW_BERRY_TEA = registerDrink("glow_berry_tea", BamFoods.GLOW_BERRY_TEA);
     // Wine
     public static final DeferredItem<Item> ACEROLA_BERRY_WINE = registerDrink("acerola_berry_wine", BamFoods.ACEROLA_BERRY_WINE);
     public static final DeferredItem<Item> SEABERRY_WINE = registerDrink("seaberry_wine", BamFoods.SEABERRY_WINE);
@@ -81,11 +84,16 @@ public class BamItems {
     public static final DeferredItem<Item> VOID_BERRY_WINE = registerDrink("void_berry_wine", BamFoods.VOID_BERRY_WINE);
     public static final DeferredItem<Item> SCORCH_BERRY_WINE = registerDrink("scorch_berry_wine", BamFoods.SCORCH_BERRY_WINE);
     public static final DeferredItem<Item> SWEET_BERRY_WINE = registerFood("sweet_berry_wine", BamFoods.SWEET_BERRY_WINE);
+    public static final DeferredItem<Item> GLOW_BERRY_WINE = registerFood("glow_berry_wine", BamFoods.GLOW_BERRY_WINE);
     // Others
     public static final DeferredItem<Item> BARLEY = register("barley", () -> new Item(props()));
     public static final DeferredItem<Item> BARLEY_BREAD = registerFood("barley_bread", BamFoods.BARLEY_BREAD);
     public static final DeferredItem<Item> TOASTED_BARLEY = register("toasted_barley", () -> new Item(props()));
     public static final DeferredItem<Item> ORZO = registerDrink("orzo", BamFoods.ORZO);
+    public static final DeferredItem<Item> TOASTED_COCOA_BEANS = register("toasted_cocoa_beans", () -> new Item(props()));
+    public static final DeferredItem<Item> CHOCOLATE_BAR = registerFood("chocolate_bar", BamFoods.CHOCOLATE_BAR);
+    public static final DeferredItem<Item> CHOCOLATE_MILK = registerDrink("chocolate_milk", BamFoods.CHOCOLATE_MILK);
+    public static final DeferredItem<Item> HOT_COCOA = registerDrink("hot_cocoa", BamFoods.HOT_COCOA);
 
     private static DeferredItem<Item> registerFood(String name, FoodProperties foodProperties) {
         return register(name, () -> new BamFoodItem(UseAnim.EAT, props().food(foodProperties)));

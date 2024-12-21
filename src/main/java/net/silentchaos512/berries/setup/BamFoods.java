@@ -20,6 +20,7 @@ public class BamFoods {
     public static final FoodProperties VOID_BERRY_JUICE = builder(5, 0.2f).build();
     public static final FoodProperties SCORCH_BERRY_JUICE = builder(4, 0.2f).build();
     public static final FoodProperties SWEET_BERRY_JUICE = builder(4, 0.2f).build();
+    public static final FoodProperties GLOW_BERRY_JUICE = builder(4, 0.2f).build();
 
     // Pies
     public static final FoodProperties ACEROLA_BERRY_PIE = builderPie().build();
@@ -28,6 +29,7 @@ public class BamFoods {
     public static final FoodProperties VOID_BERRY_PIE = builderPie().build();
     public static final FoodProperties SCORCH_BERRY_PIE = builderPie().build();
     public static final FoodProperties SWEET_BERRY_PIE = builderPie().build();
+    public static final FoodProperties GLOW_BERRY_PIE = builderPie().build();
 
     // Tea
     public static final FoodProperties ACEROLA_BERRY_TEA = builderTea()
@@ -47,6 +49,9 @@ public class BamFoods {
             .build();
     public static final FoodProperties SWEET_BERRY_TEA = builderTea()
             .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 3600, 0), 1f)
+            .build();
+    public static final FoodProperties GLOW_BERRY_TEA = builderTea()
+            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 2400, 0), 1f)
             .build();
 
     // Wine
@@ -68,6 +73,9 @@ public class BamFoods {
     public static final FoodProperties SWEET_BERRY_WINE = builderWine()
             .effect(() -> new MobEffectInstance(MobEffects.INVISIBILITY, 600, 0), 1f)
             .build();
+    public static final FoodProperties GLOW_BERRY_WINE = builderWine()
+            .effect(() -> new MobEffectInstance(MobEffects.DARKNESS, 600, 0), 1f)
+            .build();
 
     // Others
     public static final FoodProperties BARLEY_BREAD = builder(5, 0.8f)
@@ -76,6 +84,16 @@ public class BamFoods {
     public static final FoodProperties ORZO = builder(5, 0.3f)
             .alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200), 1f)
+            .build();
+    public static final FoodProperties CHOCOLATE_BAR = builder(4, 0.2f)
+            .build();
+    public static final FoodProperties CHOCOLATE_MILK = builder(6, 0.4f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600), 1f)
+            .build();
+    public static final FoodProperties HOT_COCOA = builder(6, 0.4f)
+            .alwaysEdible()
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600), 1f)
             .build();
 
     @NotNull
@@ -86,7 +104,7 @@ public class BamFoods {
     }
 
     private static FoodProperties.@NotNull Builder builderPie() {
-        return builder(6, 0.4f);
+        return builder(7, 0.5f);
     }
 
     private static FoodProperties.@NotNull Builder builderTea() {

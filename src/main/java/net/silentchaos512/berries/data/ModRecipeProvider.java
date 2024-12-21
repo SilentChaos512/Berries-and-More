@@ -25,6 +25,7 @@ public class ModRecipeProvider extends RecipeProvider {
         juiceRecipe(output, BamItems.VOID_BERRY_JUICE, BamItems.VOID_BERRIES);
         juiceRecipe(output, BamItems.SCORCH_BERRY_JUICE, BamItems.SCORCH_BERRIES);
         juiceRecipe(output, BamItems.SWEET_BERRY_JUICE, Items.SWEET_BERRIES);
+        juiceRecipe(output, BamItems.GLOW_BERRY_JUICE, Items.GLOW_BERRIES);
 
         pieRecipe(output, BamItems.ACEROLA_BERRY_PIE, BamItems.ACEROLA_BERRIES);
         pieRecipe(output, BamItems.SEABERRY_PIE, BamItems.SEABERRIES);
@@ -32,6 +33,7 @@ public class ModRecipeProvider extends RecipeProvider {
         pieRecipe(output, BamItems.VOID_BERRY_PIE, BamItems.VOID_BERRIES);
         pieRecipe(output, BamItems.SCORCH_BERRY_PIE, BamItems.SCORCH_BERRIES);
         pieRecipe(output, BamItems.SWEET_BERRY_PIE, Items.SWEET_BERRIES);
+        pieRecipe(output, BamItems.GLOW_BERRY_PIE, Items.GLOW_BERRIES);
 
         teaRecipe(output, BamItems.ACEROLA_BERRY_TEA, BamItems.ACEROLA_BERRIES);
         teaRecipe(output, BamItems.SEABERRY_TEA, BamItems.SEABERRIES);
@@ -39,6 +41,7 @@ public class ModRecipeProvider extends RecipeProvider {
         teaRecipe(output, BamItems.VOID_BERRY_TEA, BamItems.VOID_BERRIES);
         teaRecipe(output, BamItems.SCORCH_BERRY_TEA, BamItems.SCORCH_BERRIES);
         teaRecipe(output, BamItems.SWEET_BERRY_TEA, Items.SWEET_BERRIES);
+        teaRecipe(output, BamItems.GLOW_BERRY_TEA, Items.GLOW_BERRIES);
 
         wineRecipe(output, BamItems.ACEROLA_BERRY_WINE, BamItems.ACEROLA_BERRIES);
         wineRecipe(output, BamItems.SEABERRY_WINE, BamItems.SEABERRIES);
@@ -46,6 +49,7 @@ public class ModRecipeProvider extends RecipeProvider {
         wineRecipe(output, BamItems.VOID_BERRY_WINE, BamItems.VOID_BERRIES);
         wineRecipe(output, BamItems.SCORCH_BERRY_WINE, BamItems.SCORCH_BERRIES);
         wineRecipe(output, BamItems.SWEET_BERRY_WINE, Items.SWEET_BERRIES);
+        wineRecipe(output, BamItems.GLOW_BERRY_WINE, Items.GLOW_BERRIES);
 
         // Barley Foods
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamItems.BARLEY_BREAD)
@@ -74,6 +78,26 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.BARLEY, 9)
                 .requires(BamBlocks.BARLEY_BLOCK)
                 .unlockedBy("has_item", has(BamBlocks.BARLEY_BLOCK))
+                .save(output);
+
+        // Chocolate Foods
+        cookingRecipes(output, BamItems.TOASTED_COCOA_BEANS, Items.COCOA_BEANS);
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamItems.CHOCOLATE_BAR)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .define('#', BamItems.TOASTED_COCOA_BEANS)
+                .unlockedBy("has_item", has(BamItems.TOASTED_COCOA_BEANS))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.CHOCOLATE_MILK)
+                .requires(BamItems.CHOCOLATE_BAR)
+                .requires(Items.MILK_BUCKET)
+                .unlockedBy("has_item", has(BamItems.CHOCOLATE_BAR))
+                .save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.HOT_COCOA)
+                .requires(BamItems.CHOCOLATE_BAR)
+                .requires(Items.WATER_BUCKET)
+                .unlockedBy("has_item", has(BamItems.CHOCOLATE_BAR))
                 .save(output);
     }
 

@@ -35,7 +35,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 BamItems.SNOWBERRY_JUICE.get(),
                 BamItems.VOID_BERRY_JUICE.get(),
                 BamItems.SCORCH_BERRY_JUICE.get(),
-                BamItems.SWEET_BERRY_JUICE.get()
+                BamItems.SWEET_BERRY_JUICE.get(),
+                BamItems.GLOW_BERRY_JUICE.get()
         );
         tag(BamTags.Items.FOODS_JUICE).addTag(BamTags.Items.JUICES);
 
@@ -45,7 +46,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 BamItems.SNOWBERRY_PIE.get(),
                 BamItems.VOID_BERRY_PIE.get(),
                 BamItems.SCORCH_BERRY_PIE.get(),
-                BamItems.SWEET_BERRY_PIE.get()
+                BamItems.SWEET_BERRY_PIE.get(),
+                BamItems.GLOW_BERRY_PIE.get()
         );
         tag(BamTags.Items.FOODS_PIE).addTag(BamTags.Items.PIES);
 
@@ -55,7 +57,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 BamItems.SNOWBERRY_TEA.get(),
                 BamItems.VOID_BERRY_TEA.get(),
                 BamItems.SCORCH_BERRY_TEA.get(),
-                BamItems.SWEET_BERRY_TEA.get()
+                BamItems.SWEET_BERRY_TEA.get(),
+                BamItems.GLOW_BERRY_TEA.get()
         );
         tag(BamTags.Items.FOODS_TEA).addTag(BamTags.Items.TEAS);
 
@@ -65,11 +68,22 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 BamItems.SNOWBERRY_WINE.get(),
                 BamItems.VOID_BERRY_WINE.get(),
                 BamItems.SCORCH_BERRY_WINE.get(),
-                BamItems.SWEET_BERRY_WINE.get()
+                BamItems.SWEET_BERRY_WINE.get(),
+                BamItems.GLOW_BERRY_WINE.get()
         );
         tag(BamTags.Items.FOODS_WINE).addTag(BamTags.Items.WINES);
 
         tag(Tags.Items.FOODS_BREAD).add(BamItems.BARLEY_BREAD.get());
+
+        tag(Tags.Items.FOODS)
+                .addTag(BamTags.Items.FOODS_JUICE)
+                .addTag(BamTags.Items.FOODS_PIE)
+                .addTag(BamTags.Items.FOODS_TEA)
+                .addTag(BamTags.Items.FOODS_WINE)
+                .add(BamItems.CHOCOLATE_BAR.get())
+                .add(BamItems.CHOCOLATE_MILK.get())
+                .add(BamItems.HOT_COCOA.get())
+                .add(BamItems.ORZO.get());
 
         var barley = BamItems.BARLEY.get();
         tag(BamTags.Items.CROPS_BARLEY).add(barley);
@@ -87,6 +101,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(Tags.Items.SEEDS).addTag(BamTags.Items.SEEDS_BARLEY);
         tag(ItemTags.CHICKEN_FOOD).add(barleySeeds);
         tag(ItemTags.PARROT_FOOD).add(barleySeeds);
+        tag(ItemTags.PARROT_POISONOUS_FOOD).add(BamItems.CHOCOLATE_BAR.get());
         tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(barleySeeds);
     }
 }
