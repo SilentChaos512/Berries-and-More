@@ -1,5 +1,6 @@
 package net.silentchaos512.berries.data;
 
+import net.minecraft.core.HolderLookup;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
@@ -13,7 +14,7 @@ public class ModDataMapsProvider extends DataMapProvider {
     }
 
     @Override
-    protected void gather() {
+    protected void gather(HolderLookup.Provider provider) {
         final var compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
         compostables.add(BamTags.Items.BERRIES, new Compostable(0.3f, false), false);
         compostables.add(BamTags.Items.PIES, new Compostable(1.0f, false), false);

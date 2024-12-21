@@ -71,7 +71,7 @@ public class BerryBushBlock extends SweetBerryBushBlock {
             BlockState blockstate = state.setValue(AGE,1);
             level.setBlock(pos, blockstate, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockstate));
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         } else {
             return InteractionResult.PASS;
         }

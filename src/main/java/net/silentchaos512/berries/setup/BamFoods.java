@@ -1,7 +1,5 @@
 package net.silentchaos512.berries.setup;
 
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,68 +30,36 @@ public class BamFoods {
     public static final FoodProperties GLOW_BERRY_PIE = builderPie().build();
 
     // Tea
-    public static final FoodProperties ACEROLA_BERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3600, 0), 1f)
-            .build();
-    public static final FoodProperties SEABERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2400, 0), 1f)
-            .build();
-    public static final FoodProperties SNOWBERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200, 0), 1f)
-            .build();
-    public static final FoodProperties VOID_BERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 1800, 0), 1f)
-            .build();
-    public static final FoodProperties SCORCH_BERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1800, 0), 1f)
-            .build();
-    public static final FoodProperties SWEET_BERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 3600, 0), 1f)
-            .build();
-    public static final FoodProperties GLOW_BERRY_TEA = builderTea()
-            .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 2400, 0), 1f)
-            .build();
+    public static final FoodProperties ACEROLA_BERRY_TEA = builderTea().build();
+    public static final FoodProperties SEABERRY_TEA = builderTea().build();
+    public static final FoodProperties SNOWBERRY_TEA = builderTea().build();
+    public static final FoodProperties VOID_BERRY_TEA = builderTea().build();
+    public static final FoodProperties SCORCH_BERRY_TEA = builderTea().build();
+    public static final FoodProperties SWEET_BERRY_TEA = builderTea().build();
+    public static final FoodProperties GLOW_BERRY_TEA = builderTea().build();
 
     // Wine
-    public static final FoodProperties ACEROLA_BERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 1), 1f)
-            .build();
-    public static final FoodProperties SEABERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.JUMP, 600, 1), 1f)
-            .build();
-    public static final FoodProperties SNOWBERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 1f)
-            .build();
-    public static final FoodProperties VOID_BERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 300, 0), 1f)
-            .build();
-    public static final FoodProperties SCORCH_BERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 600, 1), 1f)
-            .build();
-    public static final FoodProperties SWEET_BERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.INVISIBILITY, 600, 0), 1f)
-            .build();
-    public static final FoodProperties GLOW_BERRY_WINE = builderWine()
-            .effect(() -> new MobEffectInstance(MobEffects.DARKNESS, 600, 0), 1f)
-            .build();
+    public static final FoodProperties ACEROLA_BERRY_WINE = builderWine().build();
+    public static final FoodProperties SEABERRY_WINE = builderWine().build();
+    public static final FoodProperties SNOWBERRY_WINE = builderWine().build();
+    public static final FoodProperties VOID_BERRY_WINE = builderWine().build();
+    public static final FoodProperties SCORCH_BERRY_WINE = builderWine().build();
+    public static final FoodProperties SWEET_BERRY_WINE = builderWine().build();
+    public static final FoodProperties GLOW_BERRY_WINE = builderWine().build();
 
     // Others
     public static final FoodProperties BARLEY_BREAD = builder(5, 0.8f)
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200), 1f)
             .build();
-    public static final FoodProperties ORZO = builder(5, 0.3f)
+    public static final FoodProperties ORZO = builder(4, 0.3f)
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200), 1f)
             .build();
     public static final FoodProperties CHOCOLATE_BAR = builder(4, 0.2f)
             .build();
     public static final FoodProperties CHOCOLATE_MILK = builder(6, 0.4f)
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600), 1f)
             .build();
     public static final FoodProperties HOT_COCOA = builder(6, 0.4f)
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600), 1f)
             .build();
 
     @NotNull
@@ -108,13 +74,10 @@ public class BamFoods {
     }
 
     private static FoodProperties.@NotNull Builder builderTea() {
-        return builder(5, 0.3f);
+        return builder(5, 0.3f).alwaysEdible();
     }
 
     private static FoodProperties.Builder builderWine() {
-        return builder(4, (float) 0.15)
-                .effect(() -> new MobEffectInstance(MobEffects.BLINDNESS, 300), 0.2f)
-                .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600), 0.33f)
-                .effect(() -> new MobEffectInstance(MobEffects.WEAKNESS, 1200), 0.33f);
+        return builder(4, (float) 0.15).alwaysEdible();
     }
 }

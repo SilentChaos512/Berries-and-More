@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "berriesandmore:seaberries"
-    },
-    {
-      "item": "berriesandmore:seaberries"
-    },
-    {
-      "item": "minecraft:red_mushroom"
-    },
-    {
-      "item": "minecraft:water_bucket"
-    }
+    "berriesandmore:seaberries",
+    "berriesandmore:seaberries",
+    "minecraft:red_mushroom",
+    "minecraft:water_bucket"
   ],
   "result": {
     "count": 1,

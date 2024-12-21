@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:glow_berries"
-    },
-    {
-      "item": "minecraft:glow_berries"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    "minecraft:glow_berries",
+    "minecraft:glow_berries",
+    "minecraft:milk_bucket"
   ],
   "result": {
     "count": 1,

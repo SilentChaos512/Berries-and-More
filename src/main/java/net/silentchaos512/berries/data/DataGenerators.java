@@ -12,6 +12,8 @@ public final class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
+        var packOutput = event.getGenerator().getPackOutput();
+        var lookupProvider = event.getLookupProvider();
 
         gen.addProvider(true, new ModBlockStateProvider(event));
         gen.addProvider(true, new ModItemModelProvider(event));
@@ -23,7 +25,7 @@ public final class DataGenerators {
         var blockTagsUnused = new ModBlockTagsProvider(event);
         gen.addProvider(true, blockTagsUnused);
         gen.addProvider(true, new ModItemTagProvider(event, blockTagsUnused));
-        gen.addProvider(true, new ModRecipeProvider(event));
+        gen.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
 
         gen.addProvider(true, new WorldGenGenerator(event));
 

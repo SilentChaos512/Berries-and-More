@@ -1,5 +1,7 @@
 package net.silentchaos512.berries.setup;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -17,7 +19,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.block.BerryBushBlock;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
@@ -26,52 +27,40 @@ import java.util.function.Supplier;
 public class BamBlocks {
     public static final DeferredRegister.Blocks REGISTER = DeferredRegister.createBlocks(BerriesMod.MOD_ID);
 
-    public static final DeferredBlock<BerryBushBlock> ACEROLA_BERRY_BUSH = registerNoItem("acerola_berry_bush", () ->
-            getBerryBush(BamItems.ACEROLA_BERRIES)
+    public static final DeferredBlock<BerryBushBlock> ACEROLA_BERRY_BUSH = registerBerryBush("acerola_berry_bush", BamItems.ACEROLA_BERRIES);
+    public static final DeferredBlock<BerryBushBlock> SEABERRY_BUSH = registerBerryBush("seaberry_bush", BamItems.SEABERRIES);
+    public static final DeferredBlock<BerryBushBlock> SNOWBERRY_BUSH = registerBerryBush("snowberry_bush", BamItems.SNOWBERRIES);
+    public static final DeferredBlock<BerryBushBlock> VOID_BERRY_BUSH = registerBerryBush("void_berry_bush", BamItems.VOID_BERRIES, Tags.Blocks.END_STONES);
+    public static final DeferredBlock<BerryBushBlock> SCORCH_BERRY_BUSH = registerBerryBush("scorch_berry_bush", BamItems.SCORCH_BERRIES, Tags.Blocks.NETHERRACKS);
+    public static final DeferredBlock<CropBlock> BARLEY = registerNoItem(
+            "barley",
+            CropBlock::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)
     );
-    public static final DeferredBlock<BerryBushBlock> SEABERRY_BUSH = registerNoItem("seaberry_bush", () ->
-            getBerryBush(BamItems.SEABERRIES)
-    );
-    public static final DeferredBlock<BerryBushBlock> SNOWBERRY_BUSH = registerNoItem("snowberry_bush", () ->
-            getBerryBush(BamItems.SNOWBERRIES)
-    );
-    public static final DeferredBlock<BerryBushBlock> VOID_BERRY_BUSH = registerNoItem("void_berry_bush", () ->
-            getBerryBush(BamItems.VOID_BERRIES, Tags.Blocks.END_STONES)
-    );
-    public static final DeferredBlock<BerryBushBlock> SCORCH_BERRY_BUSH = registerNoItem("scorch_berry_bush", () ->
-            getBerryBush(BamItems.SCORCH_BERRIES, Tags.Blocks.NETHERRACKS)
-    );
-    public static final DeferredBlock<CropBlock> BARLEY = registerNoItem("barley", () ->
-            new CropBlock(
-                    BlockBehaviour.Properties.of()
-                            .mapColor(MapColor.PLANT)
-                            .noCollission()
-                            .randomTicks()
-                            .instabreak()
-                            .sound(SoundType.CROP)
-                            .pushReaction(PushReaction.DESTROY)
-            )
-    );
-    public static final DeferredBlock<HayBlock> BARLEY_BLOCK = register("barley_block", () ->
-            new HayBlock(
-                    BlockBehaviour.Properties.of()
-                            .mapColor(MapColor.COLOR_YELLOW)
-                            .instrument(NoteBlockInstrument.BANJO)
-                            .strength(0.5f)
-                            .sound(SoundType.GRASS)
-            )
+    public static final DeferredBlock<HayBlock> BARLEY_BLOCK = register(
+            "barley_block",
+            HayBlock::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .instrument(NoteBlockInstrument.BANJO)
+                    .strength(0.5f)
+                    .sound(SoundType.GRASS)
     );
 
-    @NotNull
-    private static BerryBushBlock getBerryBush(ItemLike berries) {
-        return getBerryBush(berries, null);
+    private static DeferredBlock<BerryBushBlock> registerBerryBush(String name, ItemLike berries) {
+        return registerBerryBush(name, berries, null);
     }
 
-    @NotNull
-    private static BerryBushBlock getBerryBush(ItemLike berries, @Nullable TagKey<Block> soil) {
-        return new BerryBushBlock(
-                berries,
-                soil,
+    private static DeferredBlock<BerryBushBlock> registerBerryBush(String name, ItemLike berries, @Nullable TagKey<Block> soil) {
+        return registerNoItem(
+                name,
+                properties -> new BerryBushBlock(berries, soil, properties),
                 BlockBehaviour.Properties.of()
                         .mapColor(MapColor.PLANT)
                         .randomTicks()
@@ -81,16 +70,17 @@ public class BamBlocks {
         );
     }
 
-    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Supplier<T> block) {
-        return REGISTER.register(name, block);
+    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
+        return REGISTER.registerBlock(name, block, properties);
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> block) {
-        return register(name, block, b -> () -> new BlockItem(b.get(), new Item.Properties()));
+    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
+        var itemId = ResourceKey.create(Registries.ITEM, BerriesMod.getId(name));
+        return register(name, block, properties, b -> () -> new BlockItem(b.get(), new Item.Properties().setId(itemId)));
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> block, Function<DeferredBlock<T>, Supplier<? extends BlockItem>> item) {
-        DeferredBlock<T> ret = registerNoItem(name, block);
+    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties, Function<DeferredBlock<T>, Supplier<? extends BlockItem>> item) {
+        DeferredBlock<T> ret = registerNoItem(name, block, properties);
         BamItems.REGISTER.register(name, item.apply(ret));
         return ret;
     }

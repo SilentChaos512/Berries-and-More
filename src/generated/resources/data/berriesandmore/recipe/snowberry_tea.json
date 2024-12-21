@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "berriesandmore:snowberries"
-    },
-    {
-      "item": "berriesandmore:snowberries"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    "berriesandmore:snowberries",
+    "berriesandmore:snowberries",
+    "minecraft:milk_bucket"
   ],
   "result": {
     "count": 1,

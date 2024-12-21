@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "berriesandmore:acerola_berries"
-    },
-    {
-      "item": "berriesandmore:acerola_berries"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    "berriesandmore:acerola_berries",
+    "berriesandmore:acerola_berries",
+    "minecraft:milk_bucket"
   ],
   "result": {
     "count": 1,

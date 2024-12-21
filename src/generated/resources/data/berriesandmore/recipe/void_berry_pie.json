@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "b": {
-      "item": "berriesandmore:void_berries"
-    },
-    "e": {
-      "tag": "c:eggs"
-    },
-    "s": {
-      "item": "minecraft:sugar"
-    },
-    "w": {
-      "item": "minecraft:wheat"
-    }
+    "b": "berriesandmore:void_berries",
+    "e": "#c:eggs",
+    "s": "minecraft:sugar",
+    "w": "minecraft:wheat"
   },
   "pattern": [
     "esw",

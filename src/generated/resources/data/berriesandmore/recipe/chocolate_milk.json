@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "berriesandmore:chocolate_bar"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    "berriesandmore:chocolate_bar",
+    "minecraft:milk_bucket"
   ],
   "result": {
     "count": 1,

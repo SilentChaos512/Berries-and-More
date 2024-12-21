@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "berriesandmore:toasted_barley"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    "berriesandmore:toasted_barley",
+    "minecraft:sugar",
+    "minecraft:milk_bucket"
   ],
   "result": {
     "count": 1,

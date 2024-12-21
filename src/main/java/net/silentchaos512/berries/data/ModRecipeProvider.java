@@ -1,24 +1,33 @@
 package net.silentchaos512.berries.data;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.recipes.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.setup.BamBlocks;
 import net.silentchaos512.berries.setup.BamItems;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(GatherDataEvent event) {
-        super(event.getGenerator().getPackOutput(), event.getLookupProvider());
+    public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+        super(registries, output);
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    protected void buildRecipes() {
         juiceRecipe(output, BamItems.ACEROLA_BERRY_JUICE, BamItems.ACEROLA_BERRIES);
         juiceRecipe(output, BamItems.SEABERRY_JUICE, BamItems.SEABERRIES);
         juiceRecipe(output, BamItems.SNOWBERRY_JUICE, BamItems.SNOWBERRIES);
@@ -52,7 +61,7 @@ public class ModRecipeProvider extends RecipeProvider {
         wineRecipe(output, BamItems.GLOW_BERRY_WINE, Items.GLOW_BERRIES);
 
         // Barley Foods
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamItems.BARLEY_BREAD)
+        shaped(RecipeCategory.FOOD, BamItems.BARLEY_BREAD)
                 .pattern("###")
                 .define('#', BamItems.BARLEY)
                 .unlockedBy("has_item", has(BamItems.BARLEY))
@@ -60,7 +69,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         cookingRecipes(output, BamItems.TOASTED_BARLEY, BamItems.BARLEY);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.ORZO)
+        shapeless(RecipeCategory.FOOD, BamItems.ORZO)
                 .requires(BamItems.TOASTED_BARLEY)
                 .requires(Items.SUGAR)
                 .requires(Items.MILK_BUCKET)
@@ -68,33 +77,33 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
 
         // Barley Blocks
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamBlocks.BARLEY_BLOCK)
+        shaped(RecipeCategory.FOOD, BamBlocks.BARLEY_BLOCK)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
                 .define('#', BamItems.BARLEY)
                 .unlockedBy("has_item", has(BamItems.BARLEY))
                 .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.BARLEY, 9)
+        shapeless(RecipeCategory.FOOD, BamItems.BARLEY, 9)
                 .requires(BamBlocks.BARLEY_BLOCK)
                 .unlockedBy("has_item", has(BamBlocks.BARLEY_BLOCK))
                 .save(output);
 
         // Chocolate Foods
         cookingRecipes(output, BamItems.TOASTED_COCOA_BEANS, Items.COCOA_BEANS);
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, BamItems.CHOCOLATE_BAR)
+        shaped(RecipeCategory.FOOD, BamItems.CHOCOLATE_BAR)
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
                 .define('#', BamItems.TOASTED_COCOA_BEANS)
                 .unlockedBy("has_item", has(BamItems.TOASTED_COCOA_BEANS))
                 .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.CHOCOLATE_MILK)
+        shapeless(RecipeCategory.FOOD, BamItems.CHOCOLATE_MILK)
                 .requires(BamItems.CHOCOLATE_BAR)
                 .requires(Items.MILK_BUCKET)
                 .unlockedBy("has_item", has(BamItems.CHOCOLATE_BAR))
                 .save(output);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, BamItems.HOT_COCOA)
+        shapeless(RecipeCategory.FOOD, BamItems.HOT_COCOA)
                 .requires(BamItems.CHOCOLATE_BAR)
                 .requires(Items.WATER_BUCKET)
                 .unlockedBy("has_item", has(BamItems.CHOCOLATE_BAR))
@@ -102,7 +111,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void juiceRecipe(RecipeOutput consumer, ItemLike juice, ItemLike berry) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, juice)
+        shapeless(RecipeCategory.FOOD, juice)
                 .requires(berry)
                 .requires(Items.SUGAR)
                 .requires(Items.WATER_BUCKET)
@@ -111,7 +120,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void pieRecipe(RecipeOutput consumer, ItemLike pie, ItemLike berry) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, pie)
+        shaped(RecipeCategory.FOOD, pie)
                 .pattern("esw")
                 .pattern("bbb")
                 .define('e', Tags.Items.EGGS)
@@ -123,7 +132,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void teaRecipe(RecipeOutput consumer, ItemLike tea, ItemLike berry) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, tea)
+        shapeless(RecipeCategory.FOOD, tea)
                 .requires(berry)
                 .requires(berry)
                 .requires(Items.MILK_BUCKET)
@@ -132,7 +141,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void wineRecipe(RecipeOutput consumer, ItemLike wine, ItemLike berry) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, wine)
+        shapeless(RecipeCategory.FOOD, wine)
                 .requires(berry)
                 .requires(berry)
                 .requires(Items.RED_MUSHROOM)
@@ -145,12 +154,32 @@ public class ModRecipeProvider extends RecipeProvider {
         var name = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 600)
                 .unlockedBy("has_item", has(input))
-                .save(recipeOutput, BerriesMod.getId(name + "_campfire_cooking"));
+                .save(recipeOutput, modKey(name + "_campfire_cooking"));
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 100)
                 .unlockedBy("has_item", has(input))
-                .save(recipeOutput, BerriesMod.getId(name + "_smoking"));
+                .save(recipeOutput, modKey(name + "_smoking"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 200)
                 .unlockedBy("has_item", has(input))
-                .save(recipeOutput, BerriesMod.getId(name));
+                .save(recipeOutput, modKey(name));
+    }
+
+    private ResourceKey<Recipe<?>> modKey(String path) {
+        return ResourceKey.create(Registries.RECIPE, BerriesMod.getId(path));
+    }
+
+    public static class Runner extends RecipeProvider.Runner {
+        protected Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+            super(packOutput, registries);
+        }
+
+        @Override
+        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput) {
+            return new ModRecipeProvider(provider, recipeOutput);
+        }
+
+        @Override
+        public String getName() {
+            return "Berries and More Recipes";
+        }
     }
 }
