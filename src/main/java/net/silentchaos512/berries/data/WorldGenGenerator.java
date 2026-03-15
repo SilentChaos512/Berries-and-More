@@ -8,8 +8,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.state.BlockState;
@@ -57,52 +57,52 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
                 ctx.register(SCORCH_BERRY_BUSHES, scorchBerryBushes);
             })
             .add(Registries.PLACED_FEATURE, ctx -> {
-                ctx.register(placedFeatureKey(ACEROLA_BERRY_BUSHES.location()), placedBushes(holderFeature(ctx, ACEROLA_BERRY_BUSHES)));
-                ctx.register(placedFeatureKey(SEABERRY_BUSHES.location()), placedBushes(holderFeature(ctx, SEABERRY_BUSHES)));
-                ctx.register(placedFeatureKey(SNOWBERRY_BUSHES.location()), placedBushes(holderFeature(ctx, SNOWBERRY_BUSHES)));
-                ctx.register(placedFeatureKey(VOID_BERRY_BUSHES.location()), placedBushes(holderFeature(ctx, VOID_BERRY_BUSHES)));
-                ctx.register(placedFeatureKey(SCORCH_BERRY_BUSHES.location()), placedBushesNether(holderFeature(ctx, SCORCH_BERRY_BUSHES)));
+                ctx.register(placedFeatureKey(ACEROLA_BERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, ACEROLA_BERRY_BUSHES)));
+                ctx.register(placedFeatureKey(SEABERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, SEABERRY_BUSHES)));
+                ctx.register(placedFeatureKey(SNOWBERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, SNOWBERRY_BUSHES)));
+                ctx.register(placedFeatureKey(VOID_BERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, VOID_BERRY_BUSHES)));
+                ctx.register(placedFeatureKey(SCORCH_BERRY_BUSHES.identifier()), placedBushesNether(holderFeature(ctx, SCORCH_BERRY_BUSHES)));
             })
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ctx -> {
                 ctx.register(biomeModifierKey(BerriesMod.getId("savanna")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_SAVANNA),
-                                HolderSet.direct(holderPlaced(ctx, ACEROLA_BERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, ACEROLA_BERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("plains")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(TagKey.create(Registries.BIOME, BerriesMod.getId("is_plains"))),
-                                HolderSet.direct(holderPlaced(ctx, SNOWBERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, SNOWBERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("mountains")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_MOUNTAIN),
-                                HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("hills")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_HILL),
-                                HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, SEABERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("nether")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_NETHER),
-                                HolderSet.direct(holderPlaced(ctx, SCORCH_BERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, SCORCH_BERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
                 ctx.register(biomeModifierKey(BerriesMod.getId("the_end")),
                         new BiomeModifiers.AddFeaturesBiomeModifier(
                                 ctx.lookup(Registries.BIOME).getOrThrow(BiomeTags.IS_END),
-                                HolderSet.direct(holderPlaced(ctx, VOID_BERRY_BUSHES.location())),
+                                HolderSet.direct(holderPlaced(ctx, VOID_BERRY_BUSHES.identifier())),
                                 GenerationStep.Decoration.VEGETAL_DECORATION
                         )
                 );
@@ -120,15 +120,15 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
         );
     }
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(ResourceLocation name) {
+    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(Identifier name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, name);
     }
 
-    protected static ResourceKey<PlacedFeature> placedFeatureKey(ResourceLocation name) {
+    protected static ResourceKey<PlacedFeature> placedFeatureKey(Identifier name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, name);
     }
 
-    protected static ResourceKey<BiomeModifier> biomeModifierKey(ResourceLocation name) {
+    protected static ResourceKey<BiomeModifier> biomeModifierKey(Identifier name) {
         return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, name);
     }
 
@@ -163,7 +163,7 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
         return ctx.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(location);
     }
 
-    public static Holder<PlacedFeature> holderPlaced(BootstrapContext<BiomeModifier> ctx, ResourceLocation location) {
+    public static Holder<PlacedFeature> holderPlaced(BootstrapContext<BiomeModifier> ctx, Identifier location) {
         return ctx.lookup(Registries.PLACED_FEATURE).getOrThrow(placedFeatureKey(location));
     }
 }

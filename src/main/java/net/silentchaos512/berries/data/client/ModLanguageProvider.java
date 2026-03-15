@@ -1,4 +1,4 @@
-package net.silentchaos512.berries.data;
+package net.silentchaos512.berries.data.client;
 
 import net.minecraft.data.DataGenerator;
 import net.neoforged.neoforge.common.data.LanguageProvider;

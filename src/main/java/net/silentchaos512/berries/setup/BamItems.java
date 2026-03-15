@@ -18,6 +18,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.silentchaos512.berries.BerriesMod;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -40,7 +41,7 @@ public class BamItems {
     public static final DeferredItem<BlockItem> BARLEY_SEEDS = register(
             "barley_seeds",
             properties -> new BlockItem(BamBlocks.BARLEY.get(), properties),
-            props()
+            properties -> properties
                     .component(
                             DataComponents.LORE,
                             new ItemLore(
@@ -98,24 +99,24 @@ public class BamItems {
         return register(
                 name,
                 properties -> new BlockItem(bushBlock.get().value(), properties),
-                props().food(food, consumable)
+                properties -> properties.food(food, consumable)
         );
     }
 
     private static DeferredItem<Item> registerFood(String name, FoodProperties foodProperties, Consumable consumable) {
-        return register(name, Item::new, props().food(foodProperties, consumable));
+        return register(name, Item::new, properties -> properties.food(foodProperties, consumable));
     }
 
     private static DeferredItem<Item> registerSimple(String name) {
-        return register(name, Item::new, props());
+        return register(name, Item::new, p -> {
+        });
     }
 
-    protected static <T extends Item> DeferredItem<T> register(String name, Function<Item.Properties, T> item, Item.Properties properties) {
-        return REGISTER.registerItem(name, item, properties);
-    }
-
-    private static Item.Properties props() {
-        return new Item.Properties();
+    protected static <T extends Item> DeferredItem<T> register(String name, Function<Item.Properties, T> item, Consumer<Item.Properties> properties) {
+        return REGISTER.registerItem(name, item, p -> {
+            properties.accept(p);
+            return p;
+        });
     }
 
     public static void onBuildContentsOfCreativeTabs(BuildCreativeModeTabContentsEvent event) {

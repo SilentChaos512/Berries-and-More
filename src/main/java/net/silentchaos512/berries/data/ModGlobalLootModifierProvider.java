@@ -1,10 +1,10 @@
 package net.silentchaos512.berries.data;
 
-import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
@@ -33,8 +33,8 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 new AddTableLootModifier(
                         new LootItemCondition[]{
                                 AnyOfCondition.anyOf(
-                                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("blocks/short_grass")),
-                                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("blocks/tall_grass"))
+                                        LootTableIdCondition.builder(Identifier.withDefaultNamespace("blocks/short_grass")),
+                                        LootTableIdCondition.builder(Identifier.withDefaultNamespace("blocks/tall_grass"))
                                 ).build(),
                                 new LocationCheck(
                                         Optional.of(

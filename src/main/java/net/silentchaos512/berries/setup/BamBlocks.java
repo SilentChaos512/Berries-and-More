@@ -21,6 +21,7 @@ import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.block.BerryBushBlock;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -35,9 +36,9 @@ public class BamBlocks {
     public static final DeferredBlock<CropBlock> BARLEY = registerNoItem(
             "barley",
             CropBlock::new,
-            BlockBehaviour.Properties.of()
+            properties -> properties
                     .mapColor(MapColor.PLANT)
-                    .noCollission()
+                    .noCollision()
                     .randomTicks()
                     .instabreak()
                     .sound(SoundType.CROP)
@@ -46,7 +47,7 @@ public class BamBlocks {
     public static final DeferredBlock<HayBlock> BARLEY_BLOCK = register(
             "barley_block",
             HayBlock::new,
-            BlockBehaviour.Properties.of()
+            properties -> properties
                     .mapColor(MapColor.COLOR_YELLOW)
                     .instrument(NoteBlockInstrument.BANJO)
                     .strength(0.5f)
@@ -61,25 +62,28 @@ public class BamBlocks {
         return registerNoItem(
                 name,
                 properties -> new BerryBushBlock(berries, soil, properties),
-                BlockBehaviour.Properties.of()
+                properties -> properties
                         .mapColor(MapColor.PLANT)
                         .randomTicks()
-                        .noCollission()
+                        .noCollision()
                         .sound(SoundType.SWEET_BERRY_BUSH)
                         .pushReaction(PushReaction.DESTROY)
         );
     }
 
-    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
-        return REGISTER.registerBlock(name, block, properties);
+    private static <T extends Block> DeferredBlock<T> registerNoItem(String name, Function<BlockBehaviour.Properties, T> block, Consumer<BlockBehaviour.Properties> properties) {
+        return REGISTER.registerBlock(name, block, p -> {
+            properties.accept(p);
+            return p;
+        });
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
+    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, Consumer<BlockBehaviour.Properties> properties) {
         var itemId = ResourceKey.create(Registries.ITEM, BerriesMod.getId(name));
-        return register(name, block, properties, b -> () -> new BlockItem(b.get(), new Item.Properties().setId(itemId)));
+        return register(name, block, properties, b -> () -> new BlockItem(b.get(), new Item.Properties().setId(itemId).useBlockDescriptionPrefix()));
     }
 
-    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties, Function<DeferredBlock<T>, Supplier<? extends BlockItem>> item) {
+    private static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, Consumer<BlockBehaviour.Properties> properties, Function<DeferredBlock<T>, Supplier<? extends BlockItem>> item) {
         DeferredBlock<T> ret = registerNoItem(name, block, properties);
         BamItems.REGISTER.register(name, item.apply(ret));
         return ret;

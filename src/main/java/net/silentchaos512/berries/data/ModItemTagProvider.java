@@ -1,19 +1,21 @@
 package net.silentchaos512.berries.data;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import net.silentchaos512.berries.BerriesMod;
 import net.silentchaos512.berries.setup.BamBlocks;
 import net.silentchaos512.berries.setup.BamItems;
 import net.silentchaos512.berries.setup.BamTags;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ModItemTagProvider extends ItemTagsProvider {
-    public ModItemTagProvider(GatherDataEvent event, BlockTagsProvider blocks) {
-        super(event.getGenerator().getPackOutput(), event.getLookupProvider(), blocks.contentsGetter(), BerriesMod.MOD_ID, event.getExistingFileHelper());
+    public ModItemTagProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blocks) {
+        super(packOutput, lookupProvider, BerriesMod.MOD_ID);
     }
 
     @Override

@@ -1,9 +1,8 @@
 modLoader="javafml"
-loaderVersion="${loader_version_range}"
 license="${mod_license}"
 issueTrackerURL="${issue_tracker_url}"
 displayURL="${display_url}"
-logoFile="logo.png"
+logoFile= "logo.png"
 
 [[mods]]
 modId="${mod_id}"
@@ -22,5 +21,11 @@ side="BOTH"
 modId="minecraft"
 type="required"
 versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+[[dependencies.${mod_id}]]
+modId="silentlib"
+type="required"
+versionRange="${silentlib_version_range}"
 ordering="NONE"
 side="BOTH"

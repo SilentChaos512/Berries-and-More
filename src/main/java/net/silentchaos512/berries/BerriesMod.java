@@ -1,6 +1,6 @@
 package net.silentchaos512.berries;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -30,10 +30,10 @@ public final class BerriesMod {
         modEventBus.addListener(BamItems::onBuildContentsOfCreativeTabs);
     }
 
-    public static ResourceLocation getId(String path) {
+    public static Identifier getId(String path) {
         if (path.contains(":")) {
             throw new IllegalArgumentException("path contains namespace");
         }
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 }

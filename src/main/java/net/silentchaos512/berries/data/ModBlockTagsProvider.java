@@ -9,7 +9,7 @@ import net.silentchaos512.berries.setup.BamTags;
 
 class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(GatherDataEvent event) {
-        super(event.getGenerator().getPackOutput(), event.getLookupProvider(), BerriesMod.MOD_ID, event.getExistingFileHelper());
+        super(event.getGenerator().getPackOutput(), event.getLookupProvider(), BerriesMod.MOD_ID);
     }
 
     @Override
