@@ -9,8 +9,8 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -152,13 +152,13 @@ public class ModRecipeProvider extends RecipeProvider {
 
     private void cookingRecipes(RecipeOutput recipeOutput, ItemLike result, ItemLike input) {
         var name = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
-        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 600)
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.FOOD, result, 0.2f, 600)
                 .unlockedBy("has_item", has(input))
                 .save(recipeOutput, modKey(name + "_campfire_cooking"));
-        SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 100)
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.FOOD, result, 0.2f, 100)
                 .unlockedBy("has_item", has(input))
                 .save(recipeOutput, modKey(name + "_smoking"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.FOOD, new ItemStack(result), 0.2f, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.FOOD, CookingBookCategory.FOOD, result, 0.2f, 200)
                 .unlockedBy("has_item", has(input))
                 .save(recipeOutput, modKey(name));
     }

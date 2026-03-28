@@ -1,12 +1,10 @@
 package net.silentchaos512.berries.data;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -14,10 +12,9 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -36,11 +33,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
-    private static final ConfiguredFeature<?, ?> acerolaBerryBushes = new ConfiguredFeature<>(Feature.RANDOM_PATCH, berryBushConfig(BamBlocks.ACEROLA_BERRY_BUSH));
-    private static final ConfiguredFeature<?, ?> seaberryBushes = new ConfiguredFeature<>(Feature.RANDOM_PATCH, berryBushConfig(BamBlocks.SEABERRY_BUSH));
-    private static final ConfiguredFeature<?, ?> snowberryBushes = new ConfiguredFeature<>(Feature.RANDOM_PATCH, berryBushConfig(BamBlocks.SNOWBERRY_BUSH));
-    private static final ConfiguredFeature<?, ?> voidBerryBushes = new ConfiguredFeature<>(Feature.RANDOM_PATCH, berryBushConfig(BamBlocks.VOID_BERRY_BUSH));
-    private static final ConfiguredFeature<?, ?> scorchBerryBushes = new ConfiguredFeature<>(Feature.RANDOM_PATCH, berryBushConfig(BamBlocks.SCORCH_BERRY_BUSH));
+    private static final ConfiguredFeature<?, ?> acerolaBerryBushes = new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, berryBushConfig(BamBlocks.ACEROLA_BERRY_BUSH));
+    private static final ConfiguredFeature<?, ?> seaberryBushes = new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, berryBushConfig(BamBlocks.SEABERRY_BUSH));
+    private static final ConfiguredFeature<?, ?> snowberryBushes = new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, berryBushConfig(BamBlocks.SNOWBERRY_BUSH));
+    private static final ConfiguredFeature<?, ?> voidBerryBushes = new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, berryBushConfig(BamBlocks.VOID_BERRY_BUSH));
+    private static final ConfiguredFeature<?, ?> scorchBerryBushes = new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, berryBushConfig(BamBlocks.SCORCH_BERRY_BUSH));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ACEROLA_BERRY_BUSHES = configuredFeatureKey(BerriesMod.getId("acerola_berry_bushes"));
     public static final ResourceKey<ConfiguredFeature<?, ?>> SEABERRY_BUSHES = configuredFeatureKey(BerriesMod.getId("seaberry_bushes"));
@@ -60,7 +57,7 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
                 ctx.register(placedFeatureKey(ACEROLA_BERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, ACEROLA_BERRY_BUSHES)));
                 ctx.register(placedFeatureKey(SEABERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, SEABERRY_BUSHES)));
                 ctx.register(placedFeatureKey(SNOWBERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, SNOWBERRY_BUSHES)));
-                ctx.register(placedFeatureKey(VOID_BERRY_BUSHES.identifier()), placedBushes(holderFeature(ctx, VOID_BERRY_BUSHES)));
+                ctx.register(placedFeatureKey(VOID_BERRY_BUSHES.identifier()), placedBushesEnd(holderFeature(ctx, VOID_BERRY_BUSHES)));
                 ctx.register(placedFeatureKey(SCORCH_BERRY_BUSHES.identifier()), placedBushesNether(holderFeature(ctx, SCORCH_BERRY_BUSHES)));
             })
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ctx -> {
@@ -113,11 +110,9 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
     }
 
     @NotNull
-    private static RandomPatchConfiguration berryBushConfig(DeferredBlock<BerryBushBlock> berryBush) {
+    private static SimpleBlockConfiguration berryBushConfig(DeferredBlock<BerryBushBlock> berryBush) {
         BlockState state = berryBush.get().defaultBlockState();
-        return FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(BlockStateProvider.simple(state.setValue(BerryBushBlock.AGE, 3)))
-        );
+        return new SimpleBlockConfiguration(BlockStateProvider.simple(state.setValue(BerryBushBlock.AGE, 3)));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(Identifier name) {
@@ -133,30 +128,39 @@ public class WorldGenGenerator extends DatapackBuiltinEntriesProvider {
     }
 
     public static PlacedFeature placedBushes(Holder<ConfiguredFeature<?, ?>> feature) {
-        return new PlacedFeature(feature, ImmutableList.of(
+        return new PlacedFeature(feature, List.of(
                 RarityFilter.onAverageOnceEvery(32),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome()
+                BiomeFilter.biome(),
+                CountPlacement.of(96),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         ));
     }
 
     public static PlacedFeature placedBushesNether(Holder<ConfiguredFeature<?, ?>> feature) {
-        return new PlacedFeature(feature, ImmutableList.of(
+        return new PlacedFeature(feature, List.of(
                 RarityFilter.onAverageOnceEvery(1),
                 InSquarePlacement.spread(),
                 PlacementUtils.FULL_RANGE,
-                BiomeFilter.biome()
+                BiomeFilter.biome(),
+                CountPlacement.of(128),
+                RandomOffsetPlacement.ofTriangle(7, 5),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         ));
     }
 
-    public static List<PlacementModifier> placements(int minHeight, int maxHeight, int count) {
-        return ImmutableList.of(
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(minHeight), VerticalAnchor.absolute(maxHeight)),
+    public static PlacedFeature placedBushesEnd(Holder<ConfiguredFeature<?, ?>> feature) {
+        return new PlacedFeature(feature, List.of(
+                RarityFilter.onAverageOnceEvery(16),
                 InSquarePlacement.spread(),
-                CountPlacement.of(count),
-                BiomeFilter.biome()
-        );
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome(),
+                CountPlacement.of(32),
+                RandomOffsetPlacement.ofTriangle(5, 3),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+        ));
     }
 
     public static Holder<ConfiguredFeature<?, ?>> holderFeature(BootstrapContext<PlacedFeature> ctx, ResourceKey<ConfiguredFeature<?, ?>> location) {

@@ -5,7 +5,6 @@
   "experience": 0.2,
   "ingredient": "minecraft:cocoa_beans",
   "result": {
-    "count": 1,
     "id": "berriesandmore:toasted_cocoa_beans"
   }
 }

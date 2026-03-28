@@ -5,7 +5,6 @@
   "experience": 0.2,
   "ingredient": "berriesandmore:barley",
   "result": {
-    "count": 1,
     "id": "berriesandmore:toasted_barley"
   }
 }
